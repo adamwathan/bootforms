@@ -1,0 +1,20 @@
+{
+    "name": "adam-wathan/boot-forms",
+    "description": "Extends Illuminate\\Html\\FormBuilder to provide some Bootstrap specific conveniences",
+    "authors": [
+        {
+            "name": "Adam Wathan",
+            "email": "adam.wathan@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x"
+    },
+    "autoload": {
+        "psr-0": {
+            "AdamWathan\\BootForms": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
