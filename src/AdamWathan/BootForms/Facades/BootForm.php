@@ -1,5 +1,7 @@
 <?php namespace AdamWathan\BootForms\Facades;
 
+use Illuminate\Support\Facades\Facade;
+
 class BootForm extends Facade {
 
 	/**
