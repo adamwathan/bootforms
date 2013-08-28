@@ -19,11 +19,27 @@ class BootFormsServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		//
+		$this->registerBasicFormBuilder();
+		$this->registerBootForm();
+	}
+
+	// this should extend formbuilder instead of bootformbuilder
+	protected function registerBasicFormBuilder()
+	{
+		$this->app['bootform.basic'] = $this->app->share(function($app)
+		{
+			$builder = new BasicFormBuilder($app['html'], $app['url'], $app['session']->getToken());
+
+			return $builder->setSessionStore($app['session']);
+		});
+	}
+
+	// this should have the real generators injected
+	protected function registerBootForm()
+	{
 		$this->app['bootform'] = $this->app->share(function($app)
 		{
-			$form = new BootFormBuilder($app['html'], $app['url'], $app['session']->getToken());
-
-			return $form->setSessionStore($app['session']);
+			return new BootForm($app['bootform.basic']);
 		});
 	}
 

@@ -2,39 +2,47 @@
 
 use Illuminate\Html\FormBuilder;
 
-class BootFormBuilder extends FormBuilder {
-
-	protected function hasError($key)
-	{
-		if ( ! $this->session->has('errors')) {
-			return false;
-		}
-
-		$errors = $this->session->get('errors');
-
-		return $errors->has($key);
-	}
-
-	protected function getError($key)
-	{
-		if ( ! $this->session->has('errors')) {
-			return null;
-		}
-
-		$errors = $this->session->get('errors');
-
-		return $errors->first($key);		
-	}
+class BasicFormBuilder extends FormBuilder {
 
 	public function textGroup($label, $name, $value = null, $groupOptions = array(), $textOptions = array(), $labelOptions = array())
+	{
+		$input = $this->text($name, $value, $textOptions);
+
+		return $this->inputGroup($input, $label, $name, $groupOptions, $labelOptions);
+	}
+
+
+	public function emailGroup($label, $name, $value = null, $groupOptions = array(), $emailOptions = array(), $labelOptions = array())
+	{
+		$input = $this->email($name, $value, $emailOptions);
+
+		return $this->inputGroup($input, $label, $name, $groupOptions, $labelOptions);
+	}
+
+
+	public function passwordGroup($label, $name, $groupOptions = array(), $passwordOptions = array(), $labelOptions = array())
+	{
+		$input = $this->password($name, $passwordOptions);
+
+		return $this->inputGroup($input, $label, $name, $groupOptions, $labelOptions);
+	}
+
+	public function textareaGroup($label, $name, $value = null, $rows = 5, $groupOptions = array(), $textareaOptions = array(), $labelOptions = array())
+	{
+		$input = $this->textarea($name, $value, $rows, $textareaOptions);
+
+		return $this->inputGroup($input, $label, $name, $groupOptions, $labelOptions);
+	}
+
+	protected function inputGroup($input, $label, $name, $groupOptions = array(), $labelOptions = array())
 	{
 		$groupOptions = $this->addClass('form-group', $groupOptions);
 
 		$groupOptions = $this->addValidationState($name, $groupOptions);
-
+		
 		$html = '<div' . $this->html->attributes($groupOptions) . '>';
 		$html .= $this->label($name, $label, $labelOptions);
-		$html .= $this->text($name, $value, $textOptions);
+		$html .= $input;
 
 		if ($this->hasError($name)) {
 			$html .= '<p class="help-block">' . $this->getError($name) . '</p>';
@@ -46,39 +54,46 @@ class BootFormBuilder extends FormBuilder {
 	}
 
 
-	public function emailGroup($label, $name, $value = null, $groupOptions = array(), $emailOptions = array(), $labelOptions = array())
-	{
-		$groupOptions = $this->addClass('form-group', $groupOptions);
-
-		$groupOptions = $this->addValidationState($name, $groupOptions);
-
-		return '<div' . $this->html->attributes($groupOptions) . '>' . $this->label($name, $label, $labelOptions) . $this->email($name, $value, $emailOptions) . '</div>';
-	}
-
-
-	public function passwordGroup($label, $name, $groupOptions = array(), $textOptions = array(), $labelOptions = array())
-	{
-		$groupOptions = $this->addClass('form-group', $groupOptions);
-
-		$groupOptions = $this->addValidationState($name, $groupOptions);
-
-		return '<div' . $this->html->attributes($groupOptions) . '>' . $this->label($name, $label, $labelOptions) . $this->password($name, $textOptions) . '</div>';
-	}
-
 	protected function addValidationState($name, $options)
 	{
-		if (! $this->session->has('errors')) {
+		if (! $this->hasErrors()) {
 			return $options;
 		}
-		
-		$errors = $this->session->get('errors');
 
-		if ($errors->has($name)) {
+		if ($this->hasError($name)) {
 			$options = $this->addClass('has-error', $options);
 		}
 
 		return $options;
 	}
+
+	protected function hasErrors()
+	{
+		return $this->session->has('errors');
+	}
+
+	protected function hasError($key)
+	{
+		if ( ! $this->hasErrors()) {
+			return false;
+		}
+
+		$errors = $this->session->get('errors');
+
+		return $errors->has($key);
+	}
+
+	protected function getError($key)
+	{
+		if ( ! $this->hasError($key)) {
+			return null;
+		}
+
+		$errors = $this->session->get('errors');
+
+		return $errors->first($key);		
+	}
+
 
 	public function checkboxGroup($label, $name, $value = 1, $checked = null, $groupOptions = array(), $checkboxOptions = array(), $labelOptions = array())
 	{
@@ -86,6 +101,7 @@ class BootFormBuilder extends FormBuilder {
 
 		return '<div' . $this->html->attributes($groupOptions) . '><label>' . $this->checkbox($name, $value, $checked, $checkboxOptions) . $label .'</label></div>';
 	}
+
 
 	public function label($name, $value = null, $options = array())
 	{
@@ -116,6 +132,16 @@ class BootFormBuilder extends FormBuilder {
 		$options = $this->addClass('form-control', $options);
 		
 		return parent::password($name, $options);
+	}
+
+
+	public function textarea($name, $value = null, $rows = 5, $options = array())
+	{
+		$options = $this->addClass('form-control', $options);
+
+		$options = $this->addOption('rows', $rows, $options);
+
+		return parent::textarea($name, $value, $options);
 	}
 
 
