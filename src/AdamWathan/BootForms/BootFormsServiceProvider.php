@@ -20,6 +20,7 @@ class BootFormsServiceProvider extends ServiceProvider {
 	{
 		//
 		$this->registerBasicFormBuilder();
+		$this->registerHorizontalFormBuilder();
 		$this->registerBootForm();
 	}
 
@@ -28,9 +29,16 @@ class BootFormsServiceProvider extends ServiceProvider {
 	{
 		$this->app['bootform.basic'] = $this->app->share(function($app)
 		{
-			$builder = new BasicFormBuilder($app['html'], $app['url'], $app['session']->getToken());
+			return new BasicFormBuilder($app['form'], $app['session']);
+		});
+	}
 
-			return $builder->setSessionStore($app['session']);
+	// this should extend formbuilder instead of bootformbuilder
+	protected function registerHorizontalFormBuilder()
+	{
+		$this->app['bootform.horizontal'] = $this->app->share(function($app)
+		{
+			return new HorizontalFormBuilder($app['form'], $app['session']);
 		});
 	}
 
@@ -39,7 +47,7 @@ class BootFormsServiceProvider extends ServiceProvider {
 	{
 		$this->app['bootform'] = $this->app->share(function($app)
 		{
-			return new BootForm($app['bootform.basic']);
+			return new BootForm($app['bootform.basic'], $app['bootform.horizontal']);
 		});
 	}
 

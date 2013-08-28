@@ -5,12 +5,12 @@ use Illuminate\Html\FormBuilder;
 class BootForm
 {
 	private $builder;
-
 	private $basicFormBuilder;
 
-	public function __construct(BasicFormBuilder $basicFormBuilder)
+	public function __construct(BasicFormBuilder $basicFormBuilder, HorizontalFormBuilder $horizontalFormBuilder)
 	{
 		$this->basicFormBuilder = $basicFormBuilder;
+		$this->horizontalFormBuilder = $horizontalFormBuilder;
 	}
 
 
@@ -20,6 +20,13 @@ class BootForm
 		return $this->builder->open($options);
 	}
 
+	public function openHorizontal($labelWidth, $controlWidth, array $options = array())
+	{
+		$this->horizontalFormBuilder->setLabelWidth($labelWidth);
+		$this->horizontalFormBuilder->setControlWidth($controlWidth);
+		$this->builder = $this->horizontalFormBuilder;
+		return $this->builder->open($options);
+	}
 
 	public function __call($method, $parameters)
 	{

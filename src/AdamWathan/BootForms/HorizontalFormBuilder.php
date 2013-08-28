@@ -3,10 +3,12 @@
 use Illuminate\Html\FormBuilder;
 use Illuminate\Session\Store as Session;
 
-class BasicFormBuilder
+class HorizontalFormBuilder
 {
 
 	private $controlOptions = array('class' => 'form-control');
+	private $labelWidth;
+	private $controlWidth;
 
 	private $builder;
 	private $session;
@@ -17,6 +19,26 @@ class BasicFormBuilder
 		$this->session = $session;
 	}
 
+	public function setLabelWidth($columns)
+	{
+		$this->labelWidth = $columns;
+	}
+
+	public function setControlWidth($columns)
+	{
+		$this->controlWidth = $columns;
+	}
+
+	public function open(array $options = array())
+	{
+		if ( ! isset($options['class'])) {
+			$options['class'] = '';
+		}
+
+		$options['class'] = trim($options['class'] . ' ' . 'form-horizontal');
+
+		return $this->builder->open($options);
+	}
 
 	protected function formGroup($name, $label, $control)
 	{
@@ -26,12 +48,14 @@ class BasicFormBuilder
 		
 		$html = '<div class="' . $formGroupClass . '">';
 		$html .= $this->label($name, $label);
+		$html .= '<div class="col-lg-' . $this->controlWidth . '">';
 		$html .= $control;
-
+		
 		if ($this->hasError($name)) {
 			$html .= '<p class="help-block">' . $this->getError($name) . '</p>';
 		}
 
+		$html .= '</div>';
 		$html .= '</div>';
 
 		return $html;
@@ -78,10 +102,15 @@ class BasicFormBuilder
 
 	public function checkbox($label, $name, $value = 1, $checked = null)
 	{
-		$formGroup = '<div class="checkbox"><label>';
-		$formGroup .= $this->builder->checkbox($name, $value, $checked);
-		$formGroup .= $label;
-		$formGroup .= '</label></div>';
+		$formGroup  = '<div class="form-group">';
+		$formGroup .= '   <div class="col-lg-offset-' . $this->labelWidth . ' col-lg-' . $this->controlWidth . '">';
+		$formGroup .= '     <div class="checkbox">';
+		$formGroup .= '       <label>';
+		$formGroup .= $this->builder->checkbox($name, $value, $checked) . $label;
+		$formGroup .= '       </label>';
+		$formGroup .= '     </div>';
+		$formGroup .= '   </div>';
+		$formGroup .= ' </div>';
 
 		return $formGroup;
 	}
@@ -123,7 +152,7 @@ class BasicFormBuilder
 
 	public function label($name, $value = null)
 	{
-		$options = array('class' => 'control-label');
+		$options = array('class' => 'control-label col-lg-' . $this->labelWidth);
 
 		return $this->builder->label($name, $value, $options);
 	}
@@ -133,7 +162,13 @@ class BasicFormBuilder
 	{
 		$options = array_merge(array('class' => 'btn ' . $type), $options);
 
-		return $this->builder->submit($value, $options);
+		$formGroup  = '<div class="form-group">';
+		$formGroup .= '   <div class="col-lg-offset-' . $this->labelWidth . ' col-lg-' . $this->controlWidth . '">';
+		$formGroup .= $this->builder->submit($value, $options);
+		$formGroup .= '   </div>';
+		$formGroup .= ' </div>';
+
+		return $formGroup;
 	}
 
 	public function __call($method, $parameters)
