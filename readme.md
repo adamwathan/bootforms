@@ -109,18 +109,18 @@ BootForms makes a few decisions for you and allows you to pare it down a bit mor
 
 ```php
 {{ BootForm::open() }}
-	{{ BootForm::textGroup('First Name', 'first_name') }}
-	{{ BootForm::textGroup('Last Name', 'last_name') }}
-	{{ BootForm::textGroup('Date of Birth', 'date_of_birth') }}
-	{{ BootForm::emailGroup('Email', 'email') }}
-	{{ BootForm::passwordGroup('Password', 'password') }}
+	{{ BootForm::text('First Name', 'first_name') }}
+	{{ BootForm::text('Last Name', 'last_name') }}
+	{{ BootForm::text('Date of Birth', 'date_of_birth') }}
+	{{ BootForm::email('Email', 'email') }}
+	{{ BootForm::password('Password', 'password') }}
 	{{ BootForm::submit('Submit') }}
 {{ BootForm::close() }}
 ```
 
 ###Automatic Validation State
 
-Another nice thing about BootForms is that it will automatically add error states to your controls if it sees an error for that control in the session.
+Another nice thing about BootForms is that it will automatically add error states and error messages to your controls if it sees an error for that control in the session.
 
 Essentially, this takes code that would normally look like this:
 
@@ -128,13 +128,40 @@ Essentially, this takes code that would normally look like this:
 <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
 	<label class="control_label" for="first_name">First Name</label>
 	<input type="text" class="form-control" id="first_name">
+  {{ $errors->first('first_name', '<p class="help-block">:message</p>') }}
 </div>
 ```
 
 And reduces it to this:
 
 ```php
-{{ BootForm::textGroup('First Name', 'first_name') }}
+{{ BootForm::text('First Name', 'first_name') }}
 ```
 
 ...with the `has-error` class being added automatically if there is an error in the session.
+
+###Horizontal Forms
+
+To use a horizontal form instead of the standard basic form, simply swap the `BootForm::open()` call:
+
+```php
+
+// Width in columns of the left and right side
+$labelWidth = 2;
+$controlWidth = 10;
+
+{{ BootForm::openHorizontal($labelWidth, $controlWidth) }}
+  {{ BootForm::text('First Name', 'first_name') }}
+  {{ BootForm::text('Last Name', 'last_name') }}
+  {{ BootForm::text('Date of Birth', 'date_of_birth') }}
+  {{ BootForm::email('Email', 'email') }}
+  {{ BootForm::password('Password', 'password') }}
+  {{ BootForm::submit('Submit') }}
+{{ BootForm::close() }}
+```
+
+## To Do
+
+- Add support for select and radio elements
+- Add inline form support
+- Possibly add support for custom classes and other attributes. May muddy up syntax and defeat the purpose of the package though.
