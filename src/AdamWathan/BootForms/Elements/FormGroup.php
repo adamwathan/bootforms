@@ -24,6 +24,8 @@ class FormGroup extends Element
 		$html .=  $this->label;
 		$html .=  $this->input;
 
+
+		// Create a help block object and set that if there's an error from the FormBuilder itself
 		// if ($this->hasError($name)) {
 		// 	$html .= '<p class="help-block">' . $this->getError($name) . '</p>';
 		// }
@@ -33,21 +35,9 @@ class FormGroup extends Element
 		return $html;
 	}
 
-	public function placeholder($placeholder)
+	public function __call($method, $parameters)
 	{
-		$this->input->placeholder($placeholder);
-		return $this;
-	}
-
-	public function value($value)
-	{
-		$this->input->value($value);
-		return $this;
-	}
-
-	public function defaultValue($value)
-	{
-		$this->input->defaultValue($value);
+		call_user_func_array(array($this->input, $method), $parameters);
 		return $this;
 	}
 }
