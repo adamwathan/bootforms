@@ -1,174 +1,132 @@
 <?php namespace AdamWathan\BootForms;
 
-use Illuminate\Html\FormBuilder;
-use Illuminate\Session\Store as Session;
+use AdamWathan\Form\FormBuilder;
+use AdamWathan\BootForms\Elements\HorizontalFormGroup;
+use AdamWathan\BootForms\Elements\OffsetFormGroup;
+use AdamWathan\BootForms\Elements\CheckGroup;
+use AdamWathan\BootForms\Elements\HelpBlock;
 
 class HorizontalFormBuilder
 {
-
-	private $controlOptions = array('class' => 'form-control');
 	private $labelWidth;
 	private $controlWidth;
 
 	private $builder;
-	private $session;
 
-	public function __construct(FormBuilder $builder, Session $session)
+	public function __construct(FormBuilder $builder)
 	{
 		$this->builder = $builder;
-		$this->session = $session;
+		$this->labelWidth = 2;
+		$this->controlWidth = 10;
 	}
 
-	public function setLabelWidth($columns)
+	public function setLabelWidth($width)
 	{
-		$this->labelWidth = $columns;
+		$this->labelWidth = $width;
+		return $this;
 	}
 
-	public function setControlWidth($columns)
+	public function setControlWidth($width)
 	{
-		$this->controlWidth = $columns;
+		$this->controlWidth = $width;
+		return $this;
 	}
 
-	public function open(array $options = array())
+	public function open()
 	{
-		if ( ! isset($options['class'])) {
-			$options['class'] = '';
+		return $this->builder->open()->addClass('form-horizontal');
+	}	
+
+	protected function formGroup($label, $name, $control)
+	{
+		$label = $this->builder->label($label, $name)
+		->addClass($this->getLabelClass())
+		->addClass('control-label')
+		->forId($name);
+
+		$control->id($name)->addClass('form-control');
+
+		$formGroup = new HorizontalFormGroup($label, $control, $this->controlWidth);
+
+		if ($this->builder->hasError($name)) {
+			$formGroup->helpBlock(new HelpBlock($this->builder->getError($name)));
+			$formGroup->addClass('has-error');
 		}
-
-		$options['class'] = trim($options['class'] . ' ' . 'form-horizontal');
-
-		return $this->builder->open($options);
-	}
-
-	protected function formGroup($name, $label, $control)
-	{
-		$formGroupClass = 'form-group';
-
-		$formGroupClass = trim($formGroupClass . ' ' . $this->getValidationClass($name));
-		
-		$html = '<div class="' . $formGroupClass . '">';
-		$html .= $this->label($name, $label);
-		$html .= '<div class="col-lg-' . $this->controlWidth . '">';
-		$html .= $control;
-		
-		if ($this->hasError($name)) {
-			$html .= '<p class="help-block">' . $this->getError($name) . '</p>';
-		}
-
-		$html .= '</div>';
-		$html .= '</div>';
-
-		return $html;
-	}
-
-
-	protected function getValidationClass($name)
-	{
-		if (! $this->hasErrors() || ! $this->hasError($name)) {
-			return '';
-		}
-		
-		return 'has-error';
-	}
-
-	protected function hasErrors()
-	{
-		return $this->session->has('errors');
-	}
-
-	protected function hasError($key)
-	{
-		if ( ! $this->hasErrors()) {
-			return false;
-		}
-
-		return $this->getErrors()->has($key);
-	}
-
-	protected function getError($key)
-	{
-		if ( ! $this->hasError($key)) {
-			return null;
-		}
-
-		return $this->getErrors()->first($key);		
-	}
-
-	protected function getErrors()
-	{
-		return $this->hasErrors() ? $this->session->get('errors') : null;
-	}
-
-
-	public function checkbox($label, $name, $value = 1, $checked = null)
-	{
-		$formGroup  = '<div class="form-group">';
-		$formGroup .= '   <div class="col-lg-offset-' . $this->labelWidth . ' col-lg-' . $this->controlWidth . '">';
-		$formGroup .= '     <div class="checkbox">';
-		$formGroup .= '       <label>';
-		$formGroup .= $this->builder->checkbox($name, $value, $checked) . $label;
-		$formGroup .= '       </label>';
-		$formGroup .= '     </div>';
-		$formGroup .= '   </div>';
-		$formGroup .= ' </div>';
 
 		return $formGroup;
 	}
 
-	
+	protected function getLabelClass()
+	{
+		return 'col-lg-' . $this->labelWidth;
+	}
+
 	public function text($label, $name, $value = null)
 	{
-		$control = $this->builder->text($name, $value, $this->controlOptions);
+		$control = $this->builder->text($name)->value($value);
 
-		return $this->formGroup($name, $label, $control);
+		return $this->formGroup($label, $name, $control);
 	}
 
-
-	public function email($label, $name, $value = null)
+	public function textarea($label, $name)
 	{
-		$control = $this->builder->email($name, $value, $this->controlOptions);
+		$control = $this->builder->textarea($name);
 
-		return $this->formGroup($name, $label, $control);
+		return $this->formGroup($label, $name, $control);
 	}
-
 
 	public function password($label, $name)
 	{
-		$control = $this->builder->password($name, $this->controlOptions);
+		$control = $this->builder->password($name);
 
-		return $this->formGroup($name, $label, $control);
+		return $this->formGroup($label, $name, $control);
 	}
 
-
-	public function textarea($label, $name, $rows = 5, $value = null)
+	public function select($label, $name, $options = array())
 	{
-		$options = array_merge($this->controlOptions, array('rows' => $rows));
+		$control = $this->builder->select($name, $options);
 
-		$control =  $this->builder->textarea($name, $value, $options);
-
-		return $this->formGroup($name, $label, $control);
+		return $this->formGroup($label, $name, $control);
 	}
 
-
-	public function label($name, $value = null)
+	public function submit($type = "btn-default", $value = "Submit")
 	{
-		$options = array('class' => 'control-label col-lg-' . $this->labelWidth);
-
-		return $this->builder->label($name, $value, $options);
+		$button = $this->builder->submit($value)->addClass('btn')->addClass($type);
+		return new OffsetFormGroup($button, $this->controlWidth);
 	}
 
-
-	public function submit($value = null, $type = 'btn-default', $options = array())
+	public function checkbox($label, $name)
 	{
-		$options = array_merge(array('class' => 'btn ' . $type), $options);
+		$control = $this->builder->checkbox($name);
+		$checkGroup = $this->checkGroup($label, $name, $control)->addClass('checkbox');
 
-		$formGroup  = '<div class="form-group">';
-		$formGroup .= '   <div class="col-lg-offset-' . $this->labelWidth . ' col-lg-' . $this->controlWidth . '">';
-		$formGroup .= $this->builder->submit($value, $options);
-		$formGroup .= '   </div>';
-		$formGroup .= ' </div>';
+		return new OffsetFormGroup($checkGroup, $this->controlWidth);
+	}
 
-		return $formGroup;
+	protected function checkGroup($label, $name, $control)
+	{
+		$label = $this->builder->label($label, $name)->after($control);
+
+		$checkGroup = new CheckGroup($label);
+
+		if ($this->builder->hasError($name)) {
+			$checkGroup->helpBlock(new HelpBlock($this->builder->getError($name)));
+			$checkGroup->addClass('has-error');
+		}
+
+		return $checkGroup;
+	}
+
+	public function radio($label, $name, $value = null)
+	{	
+		if (is_null($value)) {
+			$value = $label;
+		}
+
+		$control = $this->builder->radio($name, $value);
+		$checkGroup = $this->checkGroup($label, $name, $control)->addClass('radio');
+
+		return new OffsetFormGroup($checkGroup, $this->controlWidth);
 	}
 
 	public function __call($method, $parameters)

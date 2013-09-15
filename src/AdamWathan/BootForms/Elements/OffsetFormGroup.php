@@ -3,16 +3,15 @@
 use AdamWathan\Form\Elements\Element;
 use AdamWathan\Form\Elements\Label;
 
-class FormGroup extends Element
+class OffsetFormGroup extends Element
 {
-	protected $label;
 	protected $control;
-	protected $helpBlock;
+	protected $controlWidth;
 
-	public function __construct(Label $label, Element $control)
+	public function __construct(Element $control, $controlWidth = 10)
 	{
-		$this->label = $label;
 		$this->control = $control;
+		$this->controlWidth = $controlWidth;
 		$this->addClass('form-group');
 	}
 
@@ -21,28 +20,25 @@ class FormGroup extends Element
 		$html  = '<div';
 		$html .= $this->renderAttributes();
 		$html .= '>';
-		$html .=  $this->label;
+		$html .= '<div class="' . $this->getControlClass() . '">';
 		$html .=  $this->control;
-		$html .= $this->renderHelpBlock();
+		$html .= '</div>';
 
 		$html .= '</div>';
 
 		return $html;
 	}
 
-	public function helpBlock(HelpBlock $helpBlock)
+	public function setControlWidth($width)
 	{
-		$this->helpBlock = $helpBlock;
+		$this->controlWidth = $width;
 		return $this;
 	}
 
-	protected function renderHelpBlock()
+	protected function getControlClass()
 	{
-		if ($this->helpBlock) {
-			return $this->helpBlock->render();
-		}
-
-		return '';
+		$offset = 12 - $this->controlWidth;
+		return 'col-lg-offset-' . $offset . ' col-lg-' . $this->controlWidth;
 	}
 
 	public function __call($method, $parameters)

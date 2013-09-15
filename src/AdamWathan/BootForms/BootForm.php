@@ -14,18 +14,18 @@ class BootForm
 	}
 
 
-	public function open(array $options = array())
+	public function open()
 	{
 		$this->builder = $this->basicFormBuilder;
-		return $this->builder->open($options);
+		return $this->builder->open();
 	}
 
-	public function openHorizontal($labelWidth, $controlWidth, array $options = array())
+	public function openHorizontal($labelWidth, $controlWidth)
 	{
 		$this->horizontalFormBuilder->setLabelWidth($labelWidth);
 		$this->horizontalFormBuilder->setControlWidth($controlWidth);
 		$this->builder = $this->horizontalFormBuilder;
-		return $this->builder->open($options);
+		return $this->builder->open();
 	}
 
 	public function __call($method, $parameters)
