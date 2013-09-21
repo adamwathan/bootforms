@@ -1,6 +1,9 @@
 <?php namespace AdamWathan\BootForms;
 
 use Illuminate\Support\ServiceProvider;
+use AdamWathan\Form\FormBuilder;
+use AdamWathan\Form\ErrorStore\IlluminateErrorStore;
+use AdamWathan\Form\OldInput\IlluminateOldInputProvider;
 
 class BootFormsServiceProvider extends ServiceProvider {
 
@@ -18,9 +21,40 @@ class BootFormsServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
+		$this->registerErrorStore();
+		$this->registerOldInput();
+		$this->registerFormBuilder();
 		$this->registerBasicFormBuilder();
 		$this->registerHorizontalFormBuilder();
 		$this->registerBootForm();
+	}
+
+	protected function registerErrorStore()
+	{
+		$this->app['adamwathan.form.errorstore'] = $this->app->share(function($app)
+		{
+			return new IlluminateErrorStore($app['session']);
+		});
+	}
+
+	protected function registerOldInput()
+	{
+		$this->app['adamwathan.form.oldinput'] = $this->app->share(function($app)
+		{
+			return new IlluminateOldInputProvider($app['session']);
+		});
+	}
+
+	protected function registerFormBuilder()
+	{
+		$this->app['adamwathan.form'] = $this->app->share(function($app)
+		{
+			$formBuilder = new FormBuilder;
+			$formBuilder->setErrorStore($app['adamwathan.form.errorstore']);
+			$formBuilder->setOldInputProvider($app['adamwathan.form.oldinput']);
+
+			return $formBuilder;
+		});
 	}
 
 	protected function registerBasicFormBuilder()

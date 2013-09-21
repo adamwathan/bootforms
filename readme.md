@@ -1,15 +1,11 @@
 BootForms
 ===============
 
-BootForms is an extension of the Laravel 4 FormBuilder class designed to greatly simplify quick form generation with Bootstrap 3.
-
-It's currently in it's early infancy, but I hope to add a lot of new features in the near future.
+BootForms builds on top of my more general [Form](https://github.com/adamwathan/form) package by adding another layer of abstraction to rapidly generate markup for standard Bootstrap 3 forms. Probably not perfect for your super custom branded ready-for-release apps, but a *huge* time saver when you are still in the prototyping stage!
 
 ## Installing with Composer
 
-BootForms will eventually be available via Packagist once the package is passed this very early alpha stage.
-
-For now, you can install BootForms by first adding the repository to your `composer.json` file:
+BootForms will eventually be available via Packagist once it stabilizes a bit more, but for now you can install it by including the following in your `composer.json` file:
 
 ```json
 {
@@ -24,6 +20,10 @@ For now, you can install BootForms by first adding the repository to your `compo
     }
 }
 ```
+
+### Laravel 4
+
+If you are using Laravel 4, you can get started very quickly by registering the included service provider.
 
 Modify the `providers` array in `app/config/app.php` to include the `BootFormsServiceProvider`:
 
@@ -43,11 +43,33 @@ Add the `BootForm` facade to the `aliases` array in `app/config/app.php`:
 	),
 ```
 
+You can now start using BootForms by calling methods directly on the `BootForm` facade:
+
+```php
+BootForm::text('Email', 'email');
+```
+
+### Outside of Laravel 4
+
+Usage outside of Laravel 4 is a little trickier since there's a bit of a dependency stack you need to build up, but it's not too tricky.
+
+```php
+$formBuilder = new AdamWathan\Form\FormBuilder;
+
+$formBuilder->setOldInputProvider($myOldInputProvider);
+$formBuilder->setErrorStore($myErrorStore);
+
+$basicBootFormsBuilder = new AdamWathan\BootForms\BasicFormBuilder($formBuilder);
+$horizontalBootFormsBuilder = new AdamWathan\BootForms\HorizontalFormBuilder($formBuilder);
+
+$bootForm = new AdamWathan\BootForms\BootForm($basicBootFormsBuilder, $horizontalBootFormsBuilder);
+```
+
+> Note: You must provide your own implementations of `AdamWathan\Form\OldInputInterface` and `AdamWathan\Form\ErrorStoreInterface` when not using the implementations meant for Laravel 4.
+
 ## Using BootForms
 
-Using BootForms is much like using the regular `Form` facade in Laravel 4, but it provides a little extra niceness specific to Bootstrap.
-
-###Reduced Boilerplate
+### Reduced Boilerplate
 
 Typical Bootstrap form boilerplate might look something like this:
 
@@ -118,9 +140,9 @@ BootForms makes a few decisions for you and allows you to pare it down a bit mor
 {{ BootForm::close() }}
 ```
 
-###Automatic Validation State
+### Automatic Validation State
 
-Another nice thing about BootForms is that it will automatically add error states and error messages to your controls if it sees an error for that control in the session.
+Another nice thing about BootForms is that it will automatically add error states and error messages to your controls if it sees an error for that control in the error store.
 
 Essentially, this takes code that would normally look like this:
 
@@ -140,7 +162,7 @@ And reduces it to this:
 
 ...with the `has-error` class being added automatically if there is an error in the session.
 
-###Horizontal Forms
+### Horizontal Forms
 
 To use a horizontal form instead of the standard basic form, simply swap the `BootForm::open()` call:
 
@@ -160,8 +182,16 @@ $controlWidth = 10;
 {{ BootForm::close() }}
 ```
 
-## To Do
+### Customizing Form Elements
 
-- Add support for select and radio elements
-- Add inline form support
-- Possibly add support for custom classes and other attributes. May muddy up syntax and defeat the purpose of the package though.
+If you need to customize your form elements in any way (such as adding a default value or placeholder to a text element), simply chain the calls you need to make and they will fall through to the underlying form element:
+
+```php
+// <div class="form-group">
+//    <label class="control_label" for="first_name">First Name</label>
+//    <input type="text" class="form-control" id="first_name" placeholder="John Doe">
+// </div>
+BootForm::text('First Name', 'first_name')->placeholder('John Doe');
+```
+
+For more information about what's possible, check out the documentation for [my basic Form package.](https://github.com/adamwathan/form)
