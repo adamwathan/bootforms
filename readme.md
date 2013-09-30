@@ -16,7 +16,7 @@ BootForms will eventually be available via Packagist once it stabilizes a bit mo
         }
     ],
     "require": {
-        "adam-wathan/boot-forms": "dev-master"
+        "adamwathan/bootforms": "dev-master"
     }
 }
 ```
