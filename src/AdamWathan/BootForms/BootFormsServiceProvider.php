@@ -33,7 +33,7 @@ class BootFormsServiceProvider extends ServiceProvider {
 	{
 		$this->app['adamwathan.form.errorstore'] = $this->app->share(function($app)
 		{
-			return new IlluminateErrorStore($app['session']);
+			return new IlluminateErrorStore($app['session.store']);
 		});
 	}
 
@@ -41,7 +41,7 @@ class BootFormsServiceProvider extends ServiceProvider {
 	{
 		$this->app['adamwathan.form.oldinput'] = $this->app->share(function($app)
 		{
-			return new IlluminateOldInputProvider($app['session']);
+			return new IlluminateOldInputProvider($app['session.store']);
 		});
 	}
 
