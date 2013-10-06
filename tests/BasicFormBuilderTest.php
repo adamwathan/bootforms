@@ -357,4 +357,26 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$result = $this->form->close();
 		$this->assertEquals($expected, $result);
 	}
+
+	public function testCsrfToken()
+	{
+		$this->form->setToken('1234');
+		$expected = '<input type="hidden" name="_token" value="1234">';
+		$result = $this->form->token();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testFormOpenPut()
+	{
+		$expected = '<form method="POST"><input type="hidden" name="_method" value="PUT">';
+		$result = $this->form->open()->put()->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testFormOpenDelete()
+	{
+		$expected = '<form method="POST"><input type="hidden" name="_method" value="DELETE">';
+		$result = $this->form->open()->delete()->render();
+		$this->assertEquals($expected, $result);
+	}
 }
