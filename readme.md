@@ -58,6 +58,7 @@ $formBuilder = new AdamWathan\Form\FormBuilder;
 
 $formBuilder->setOldInputProvider($myOldInputProvider);
 $formBuilder->setErrorStore($myErrorStore);
+$formBuilder->setToken($myCsrfToken);
 
 $basicBootFormsBuilder = new AdamWathan\BootForms\BasicFormBuilder($formBuilder);
 $horizontalBootFormsBuilder = new AdamWathan\BootForms\HorizontalFormBuilder($formBuilder);
