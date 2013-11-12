@@ -387,6 +387,13 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+	public function testRenderEmailGroup()
+	{
+		$expected = '<div class="form-group"><label class="control-label" for="email">Email</label><input type="email" name="email" id="email" class="form-control"></div>';
+		$result = $this->form->email('Email', 'email')->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	public function testRenderFileGroup()
 	{
 		$expected = '<div class="form-group"><label class="control-label" for="file">File</label><input type="file" name="file" id="file"></div>';

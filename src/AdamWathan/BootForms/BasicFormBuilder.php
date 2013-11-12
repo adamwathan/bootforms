@@ -118,6 +118,13 @@ class BasicFormBuilder
 		return $this->formGroup($label, $name, $control);
 	}
 
+	public function email($label, $name, $value = null)
+	{
+		$control = $this->builder->email($name)->value($value);
+
+		return $this->formGroup($label, $name, $control);
+	}
+
 	public function file($label, $name, $value = null)
 	{
 		$control = $this->builder->file($name)->value($value);
