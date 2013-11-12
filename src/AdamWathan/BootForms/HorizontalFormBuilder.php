@@ -6,12 +6,12 @@ use AdamWathan\BootForms\Elements\OffsetFormGroup;
 use AdamWathan\BootForms\Elements\CheckGroup;
 use AdamWathan\BootForms\Elements\HelpBlock;
 
-class HorizontalFormBuilder
+class HorizontalFormBuilder extends BasicFormBuilder
 {
 	private $labelWidth;
 	private $controlWidth;
 
-	private $builder;
+	protected $builder;
 
 	public function __construct(FormBuilder $builder)
 	{
@@ -61,34 +61,6 @@ class HorizontalFormBuilder
 		return 'col-lg-' . $this->labelWidth;
 	}
 
-	public function text($label, $name, $value = null)
-	{
-		$control = $this->builder->text($name)->value($value);
-
-		return $this->formGroup($label, $name, $control);
-	}
-
-	public function textarea($label, $name)
-	{
-		$control = $this->builder->textarea($name);
-
-		return $this->formGroup($label, $name, $control);
-	}
-
-	public function password($label, $name)
-	{
-		$control = $this->builder->password($name);
-
-		return $this->formGroup($label, $name, $control);
-	}
-
-	public function select($label, $name, $options = array())
-	{
-		$control = $this->builder->select($name, $options);
-
-		return $this->formGroup($label, $name, $control);
-	}
-
 	public function submit($value = "Submit", $type = "btn-default")
 	{
 		$button = $this->builder->submit($value)->addClass('btn')->addClass($type);
@@ -127,6 +99,26 @@ class HorizontalFormBuilder
 		$checkGroup = $this->checkGroup($label, $name, $control)->addClass('radio');
 
 		return new OffsetFormGroup($checkGroup, $this->controlWidth);
+	}
+
+	public function file($label, $name, $value = null)
+	{
+		$control = $this->builder->file($name)->value($value);
+		$label = $this->builder->label($label, $name)
+		->addClass($this->getLabelClass())
+		->addClass('control-label')
+		->forId($name);
+
+		$control->id($name);
+
+		$formGroup = new HorizontalFormGroup($label, $control, $this->controlWidth);
+
+		if ($this->builder->hasError($name)) {
+			$formGroup->helpBlock(new HelpBlock($this->builder->getError($name)));
+			$formGroup->addClass('has-error');
+		}
+
+		return $formGroup;
 	}
 
 	public function __call($method, $parameters)

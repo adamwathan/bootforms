@@ -379,4 +379,30 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$result = $this->form->open()->delete()->render();
 		$this->assertEquals($expected, $result);
 	}
+
+	public function testRenderDateGroup()
+	{
+		$expected = '<div class="form-group"><label class="control-label" for="birthday">Birthday</label><input type="date" name="birthday" id="birthday" class="form-control"></div>';
+		$result = $this->form->date('Birthday', 'birthday')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderFileGroup()
+	{
+		$expected = '<div class="form-group"><label class="control-label" for="file">File</label><input type="file" name="file" id="file"></div>';
+		$result = $this->form->file('File', 'file')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderFileGroupWithError()
+	{
+		$errorStore = Mockery::mock('AdamWathan\Form\ErrorStore\ErrorStoreInterface');
+		$errorStore->shouldReceive('hasError')->andReturn(true);
+		$errorStore->shouldReceive('getError')->andReturn('Sample error');
+
+		$this->builder->setErrorStore($errorStore);
+		$expected = '<div class="form-group has-error"><label class="control-label" for="file">File</label><input type="file" name="file" id="file"><p class="help-block">Sample error</p></div>';
+		$result = $this->form->file('File', 'file')->render();
+		$this->assertEquals($expected, $result);
+	}
 }

@@ -7,7 +7,7 @@ use AdamWathan\BootForms\Elements\HelpBlock;
 
 class BasicFormBuilder
 {
-	private $builder;
+	protected $builder;
 
 	public function __construct(FormBuilder $builder)
 	{
@@ -109,6 +109,29 @@ class BasicFormBuilder
 		$control = $this->builder->radio($name, $value);
 
 		return $label->after($control);
+	}
+
+	public function date($label, $name, $value = null)
+	{
+		$control = $this->builder->date($name)->value($value);
+
+		return $this->formGroup($label, $name, $control);
+	}
+
+	public function file($label, $name, $value = null)
+	{
+		$control = $this->builder->file($name)->value($value);
+		$label = $this->builder->label($label, $name)->addClass('control-label')->forId($name);
+		$control->id($name);
+
+		$formGroup = new FormGroup($label, $control);
+
+		if ($this->builder->hasError($name)) {
+			$formGroup->helpBlock(new HelpBlock($this->builder->getError($name)));
+			$formGroup->addClass('has-error');
+		}
+
+		return $formGroup;	
 	}
 
 	public function __call($method, $parameters)
