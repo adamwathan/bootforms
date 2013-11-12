@@ -89,7 +89,7 @@ class HorizontalFormBuilder
 		return $this->formGroup($label, $name, $control);
 	}
 
-	public function submit($type = "btn-default", $value = "Submit")
+	public function submit($value = "Submit", $type = "btn-default")
 	{
 		$button = $this->builder->submit($value)->addClass('btn')->addClass($type);
 		return new OffsetFormGroup($button, $this->controlWidth);

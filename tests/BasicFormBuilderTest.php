@@ -141,14 +141,14 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 	public function testRenderSubmitWithAlternateStyling()
 	{
 		$expected = '<input type="submit" value="Submit" class="btn btn-success">';
-		$result = $this->form->submit('btn-success')->render();
+		$result = $this->form->submit('Submit', 'btn-success')->render();
 		$this->assertEquals($expected, $result);
 	}
 
 	public function testRenderSubmitWithValue()
 	{
 		$expected = '<input type="submit" value="Sign Up" class="btn btn-success">';
-		$result = $this->form->submit('btn-success', 'Sign Up')->render();
+		$result = $this->form->submit('Sign Up', 'btn-success')->render();
 		$this->assertEquals($expected, $result);
 	}
 
