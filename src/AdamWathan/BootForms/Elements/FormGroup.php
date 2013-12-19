@@ -45,6 +45,16 @@ class FormGroup extends Element
 		return '';
 	}
 
+	public function control()
+	{
+		return $this->control;
+	}
+
+	public function label()
+	{
+		return $this->label;
+	}
+
 	public function __call($method, $parameters)
 	{
 		call_user_func_array(array($this->control, $method), $parameters);

@@ -4,6 +4,7 @@ use AdamWathan\Form\FormBuilder;
 use AdamWathan\BootForms\Elements\FormGroup;
 use AdamWathan\BootForms\Elements\CheckGroup;
 use AdamWathan\BootForms\Elements\HelpBlock;
+use AdamWathan\BootForms\Elements\GroupWrapper;
 
 class BasicFormBuilder
 {
@@ -26,7 +27,12 @@ class BasicFormBuilder
 			$formGroup->addClass('has-error');
 		}
 
-		return $formGroup;		
+		return $this->wrap($formGroup);
+	}
+
+	protected function wrap($group)
+	{
+		return new GroupWrapper($group);
 	}
 
 	public function text($label, $name, $value = null)
@@ -59,10 +65,16 @@ class BasicFormBuilder
 	{
 		$control = $this->builder->checkbox($name);
 
-		return $this->checkGroup($label, $name, $control)->addClass('checkbox');
+		return $this->checkGroup($label, $name, $control);
 	}
 
 	protected function checkGroup($label, $name, $control)
+	{
+		$checkGroup = $this->buildCheckGroup($label, $name, $control);
+		return $this->wrap($checkGroup->addClass('checkbox'));
+	}
+
+	protected function buildCheckGroup($label, $name, $control)
 	{
 		$label = $this->builder->label($label, $name)->after($control)->addClass('control-label');
 
@@ -72,7 +84,6 @@ class BasicFormBuilder
 			$checkGroup->helpBlock(new HelpBlock($this->builder->getError($name)));
 			$checkGroup->addClass('has-error');
 		}
-
 		return $checkGroup;
 	}
 
@@ -84,7 +95,13 @@ class BasicFormBuilder
 
 		$control = $this->builder->radio($name, $value);
 
-		return $this->checkGroup($label, $name, $control)->addClass('radio');
+		return $this->radioGroup($label, $name, $control);
+	}
+
+	protected function radioGroup($label, $name, $control)
+	{
+		$checkGroup = $this->buildCheckGroup($label, $name, $control);
+		return $this->wrap($checkGroup->addClass('radio'));
 	}
 
 	public function textarea($label, $name)
@@ -138,7 +155,7 @@ class BasicFormBuilder
 			$formGroup->addClass('has-error');
 		}
 
-		return $formGroup;	
+		return $this->wrap($formGroup);
 	}
 
 	public function __call($method, $parameters)
