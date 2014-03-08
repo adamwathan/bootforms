@@ -106,7 +106,7 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 	}
 
 	public function testRenderPasswordGroupDoesntKeepOldInput()
-	{		
+	{
 		$oldInput = Mockery::mock('AdamWathan\Form\OldInput\OldInputInterface');
 		$oldInput->shouldReceive('hasOldInput')->andReturn(true);
 		$oldInput->shouldReceive('getOldInput')->andReturn('password');
@@ -332,14 +332,14 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 
 	public function testFormOpen()
 	{
-		$expected = '<form method="POST">';
+		$expected = '<form method="POST" action="">';
 		$result = $this->form->open()->render();
 		$this->assertEquals($expected, $result);
 	}
 
 	public function testFormOpenGet()
 	{
-		$expected = '<form method="GET">';
+		$expected = '<form method="GET" action="">';
 		$result = $this->form->open()->get()->render();
 		$this->assertEquals($expected, $result);
 	}
@@ -368,14 +368,14 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 
 	public function testFormOpenPut()
 	{
-		$expected = '<form method="POST"><input type="hidden" name="_method" value="PUT">';
+		$expected = '<form method="POST" action=""><input type="hidden" name="_method" value="PUT">';
 		$result = $this->form->open()->put()->render();
 		$this->assertEquals($expected, $result);
 	}
 
 	public function testFormOpenDelete()
 	{
-		$expected = '<form method="POST"><input type="hidden" name="_method" value="DELETE">';
+		$expected = '<form method="POST" action=""><input type="hidden" name="_method" value="DELETE">';
 		$result = $this->form->open()->delete()->render();
 		$this->assertEquals($expected, $result);
 	}

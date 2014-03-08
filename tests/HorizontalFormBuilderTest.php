@@ -21,21 +21,21 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
 
 	public function testFormOpen()
 	{
-		$expected = '<form method="POST" class="form-horizontal">';
+		$expected = '<form method="POST" action="" class="form-horizontal">';
 		$result = $this->form->open()->render();
 		$this->assertEquals($expected, $result);
 	}
 
 	public function testFormOpenGet()
 	{
-		$expected = '<form method="GET" class="form-horizontal">';
+		$expected = '<form method="GET" action="" class="form-horizontal">';
 		$result = $this->form->open()->get()->render();
 		$this->assertEquals($expected, $result);
 	}
 
 	public function testFormOpenCustomAction()
 	{
-		$expected = '<form method="GET" class="form-horizontal" action="/search">';
+		$expected = '<form method="GET" action="/search" class="form-horizontal">';
 		$result = $this->form->open()->get()->action('/search')->render();
 		$this->assertEquals($expected, $result);
 	}
@@ -142,7 +142,7 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
 	}
 
 	public function testRenderPasswordGroupDoesntKeepOldInput()
-	{		
+	{
 		$oldInput = Mockery::mock('AdamWathan\Form\OldInput\OldInputInterface');
 		$oldInput->shouldReceive('hasOldInput')->andReturn(true);
 		$oldInput->shouldReceive('getOldInput')->andReturn('password');
@@ -178,7 +178,7 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
 	{
 		$expected = '<div class="form-group"><div class="col-lg-offset-2 col-lg-10"><div class="checkbox"><label><input type="checkbox" name="terms" value="1">Agree to Terms</label></div></div></div>';
 		$result = $this->form->checkbox('Agree to Terms', 'terms')->render();
-		$this->assertEquals($expected, $result);		
+		$this->assertEquals($expected, $result);
 	}
 
 	public function testRenderCheckboxWithError()
