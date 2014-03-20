@@ -8,12 +8,6 @@
         }
     ],
     "license": "MIT",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/adamwathan/form"
-        }
-    ],
     "require": {
         "php": ">=5.3.0",
         "adamwathan/form": "dev-master"
