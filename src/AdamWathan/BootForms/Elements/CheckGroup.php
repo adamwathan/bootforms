@@ -5,6 +5,8 @@ use AdamWathan\Form\Elements\Label;
 
 class CheckGroup extends FormGroup
 {
+    protected $label;
+
 	public function __construct(Label $label)
 	{
 		$this->label = $label;

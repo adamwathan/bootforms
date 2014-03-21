@@ -105,9 +105,9 @@ class HorizontalFormBuilder extends BasicFormBuilder
 	{
 		$control = $this->builder->file($name)->value($value);
 		$label = $this->builder->label($label, $name)
-		->addClass($this->getLabelClass())
-		->addClass('control-label')
-		->forId($name);
+            ->addClass($this->getLabelClass())
+            ->addClass('control-label')
+            ->forId($name);
 
 		$control->id($name);
 
