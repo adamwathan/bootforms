@@ -10,10 +10,12 @@ You can install this package via Composer by including the following in your `co
 ```json
 {
     "require": {
-        "adamwathan/bootforms": "dev-master"
+        "adamwathan/bootforms": "v0.2"
     }
 }
 ```
+
+*Note: you could also require `dev-master` to test the latest version, but make sure you drop your `minimum-stability` to `dev`.*
 
 ### Laravel 4
 
