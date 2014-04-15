@@ -16,6 +16,12 @@ class GroupWrapper
 		return $this->formGroup->render();
 	}
 
+	public function helpBlock($text)
+	{
+		$this->formGroup->helpBlock($text);
+		return $this;
+	}
+
 	public function __toString()
 	{
 		return $this->render();

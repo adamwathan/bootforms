@@ -23,7 +23,7 @@ class BasicFormBuilder
 		$formGroup = new FormGroup($label, $control);
 
 		if ($this->builder->hasError($name)) {
-			$formGroup->helpBlock(new HelpBlock($this->builder->getError($name)));
+			$formGroup->helpBlock($this->builder->getError($name));
 			$formGroup->addClass('has-error');
 		}
 
@@ -41,7 +41,7 @@ class BasicFormBuilder
 
 		return $this->formGroup($label, $name, $control);
 	}
-	
+
 	public function password($label, $name)
 	{
 		$control = $this->builder->password($name);
@@ -81,7 +81,7 @@ class BasicFormBuilder
 		$checkGroup = new CheckGroup($label);
 
 		if ($this->builder->hasError($name)) {
-			$checkGroup->helpBlock(new HelpBlock($this->builder->getError($name)));
+			$checkGroup->helpBlock($this->builder->getError($name));
 			$checkGroup->addClass('has-error');
 		}
 		return $checkGroup;
@@ -151,7 +151,7 @@ class BasicFormBuilder
 		$formGroup = new FormGroup($label, $control);
 
 		if ($this->builder->hasError($name)) {
-			$formGroup->helpBlock(new HelpBlock($this->builder->getError($name)));
+			$formGroup->helpBlock($this->builder->getError($name));
 			$formGroup->addClass('has-error');
 		}
 

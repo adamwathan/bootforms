@@ -75,8 +75,7 @@ class FormGroupTest extends PHPUnit_Framework_TestCase
         $label = $this->builder->label('Email');
         $text = $this->builder->text('email');
         $formGroup = new FormGroup($label, $text);
-        $helpBlock = new HelpBlock('Email is required.');
-        $formGroup->helpBlock($helpBlock);
+        $formGroup->helpBlock('Email is required.');
 
         $expected = '<div class="form-group"><label>Email</label><input type="text" name="email"><p class="help-block">Email is required.</p></div>';
         $result = $formGroup->render();

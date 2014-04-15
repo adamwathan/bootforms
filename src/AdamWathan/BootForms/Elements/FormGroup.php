@@ -17,7 +17,7 @@ class FormGroup extends Element
 	}
 
 	public function render()
-	{		
+	{
 		$html  = '<div';
 		$html .= $this->renderAttributes();
 		$html .= '>';
@@ -30,9 +30,12 @@ class FormGroup extends Element
 		return $html;
 	}
 
-	public function helpBlock(HelpBlock $helpBlock)
+	public function helpBlock($text)
 	{
-		$this->helpBlock = $helpBlock;
+		if (isset($this->helpBlock)) {
+			return;
+		}
+		$this->helpBlock = new HelpBlock($text);
 		return $this;
 	}
 

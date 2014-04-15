@@ -46,6 +46,19 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+	public function testRenderTextGroupWithErrorOverridesCustomHelpBlock()
+	{
+		$errorStore = Mockery::mock('AdamWathan\Form\ErrorStore\ErrorStoreInterface');
+		$errorStore->shouldReceive('hasError')->andReturn(true);
+		$errorStore->shouldReceive('getError')->andReturn('Email is required.');
+
+		$this->builder->setErrorStore($errorStore);
+
+		$expected = '<div class="form-group has-error"><label class="control-label" for="email">Email</label><input type="text" name="email" id="email" class="form-control"><p class="help-block">Email is required.</p></div>';
+		$result = $this->form->text('Email', 'email')->helpBlock('some custom text')->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	public function testRenderTextGroupWithOldInput()
 	{
 		$oldInput = Mockery::mock('AdamWathan\Form\OldInput\OldInputInterface');

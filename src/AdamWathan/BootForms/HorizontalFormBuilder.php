@@ -35,7 +35,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
 	public function open()
 	{
 		return $this->builder->open()->addClass('form-horizontal');
-	}	
+	}
 
 	protected function formGroup($label, $name, $control)
 	{
@@ -49,7 +49,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
 		$formGroup = new HorizontalFormGroup($label, $control, $this->controlWidth);
 
 		if ($this->builder->hasError($name)) {
-			$formGroup->helpBlock(new HelpBlock($this->builder->getError($name)));
+			$formGroup->helpBlock($this->builder->getError($name));
 			$formGroup->addClass('has-error');
 		}
 
@@ -82,7 +82,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
 		$checkGroup = new CheckGroup($label);
 
 		if ($this->builder->hasError($name)) {
-			$checkGroup->helpBlock(new HelpBlock($this->builder->getError($name)));
+			$checkGroup->helpBlock($this->builder->getError($name));
 			$checkGroup->addClass('has-error');
 		}
 
@@ -90,7 +90,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
 	}
 
 	public function radio($label, $name, $value = null)
-	{	
+	{
 		if (is_null($value)) {
 			$value = $label;
 		}
@@ -114,7 +114,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
 		$formGroup = new HorizontalFormGroup($label, $control, $this->controlWidth);
 
 		if ($this->builder->hasError($name)) {
-			$formGroup->helpBlock(new HelpBlock($this->builder->getError($name)));
+			$formGroup->helpBlock($this->builder->getError($name));
 			$formGroup->addClass('has-error');
 		}
 
