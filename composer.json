@@ -19,7 +19,10 @@
     "autoload": {
         "psr-0": {
             "AdamWathan\\BootForms": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "minimum-stability": "dev"
 }
