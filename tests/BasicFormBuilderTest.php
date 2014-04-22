@@ -424,7 +424,7 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 
 	public function testRenderGroupOfRadios()
 	{
-		$expected = '<div class="form-group"><label class="control-label">Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="red">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="blue">Blue</label></div></div></div>';
+		$expected = '<div class="form-group"><label>Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="red">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="blue">Blue</label></div></div></div>';
 		$options = array(
 			'red' => 'Red',
 			'blue' => 'Blue',
@@ -432,7 +432,7 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$result = $this->form->radio('Choose color', 'color', $options)->render();
 		$this->assertEquals($expected, $result);
 
-		$expected = '<div class="form-group"><label class="control-label">Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="Red">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="Blue">Blue</label></div></div></div>';
+		$expected = '<div class="form-group"><label>Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="Red">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="Blue">Blue</label></div></div></div>';
 		$options = array(
 			'Red',
 			'Blue',
@@ -448,7 +448,7 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$errorStore->shouldReceive('getError')->andReturn('Sample error');
 
 		$this->builder->setErrorStore($errorStore);
-		$expected = '<div class="form-group has-error"><label class="control-label">Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="red">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="blue">Blue</label></div></div><p class="help-block">Sample error</p></div>';
+		$expected = '<div class="form-group has-error"><label>Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="red">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="blue">Blue</label></div></div><p class="help-block">Sample error</p></div>';
 		$options = array(
 			'red' => 'Red',
 			'blue' => 'Blue',
@@ -461,7 +461,7 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$errorStore->shouldReceive('getError')->andReturn('Sample error');
 
 		$this->builder->setErrorStore($errorStore);
-		$expected = '<div class="form-group has-error"><label class="control-label">Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="Red">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="Blue">Blue</label></div></div><p class="help-block">Sample error</p></div>';
+		$expected = '<div class="form-group has-error"><label>Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="Red">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="Blue">Blue</label></div></div><p class="help-block">Sample error</p></div>';
 		$options = array(
 			'Red',
 			'Blue',
@@ -478,7 +478,7 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 
 		$this->builder->setOldInputProvider($oldInput);
 
-		$expected = '<div class="form-group"><label class="control-label">Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="red" checked="checked">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="blue">Blue</label></div></div></div>';
+		$expected = '<div class="form-group"><label>Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="red" checked="checked">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="blue">Blue</label></div></div></div>';
 		$options = array(
 			'red' => 'Red',
 			'blue' => 'Blue',
