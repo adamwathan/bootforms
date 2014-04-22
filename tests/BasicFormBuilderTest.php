@@ -434,4 +434,69 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$result = $this->form->select('Favorite Color', 'color', $options)->addClass('my-class')->render();
 		$this->assertEquals($expected, $result);
     }
+
+	public function testRenderGroupOfRadios()
+	{
+		$expected = '<div class="form-group"><label class="control-label">Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="red">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="blue">Blue</label></div></div></div>';
+		$options = array(
+			'red' => 'Red',
+			'blue' => 'Blue',
+		);
+		$result = $this->form->radio('Choose color', 'color', $options)->render();
+		$this->assertEquals($expected, $result);
+
+		$expected = '<div class="form-group"><label class="control-label">Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="Red">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="Blue">Blue</label></div></div></div>';
+		$options = array(
+			'Red',
+			'Blue',
+		);
+		$result = $this->form->radio('Choose color', 'color', $options)->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderGroupOfRadiosWithError()
+	{
+		$errorStore = Mockery::mock('AdamWathan\Form\ErrorStore\ErrorStoreInterface');
+		$errorStore->shouldReceive('hasError')->andReturn(true);
+		$errorStore->shouldReceive('getError')->andReturn('Sample error');
+
+		$this->builder->setErrorStore($errorStore);
+		$expected = '<div class="form-group has-error"><label class="control-label">Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="red">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="blue">Blue</label></div></div><p class="help-block">Sample error</p></div>';
+		$options = array(
+			'red' => 'Red',
+			'blue' => 'Blue',
+		);
+		$result = $this->form->radio('Choose color', 'color', $options)->render();
+		$this->assertEquals($expected, $result);
+
+		$errorStore = Mockery::mock('AdamWathan\Form\ErrorStore\ErrorStoreInterface');
+		$errorStore->shouldReceive('hasError')->andReturn(true);
+		$errorStore->shouldReceive('getError')->andReturn('Sample error');
+
+		$this->builder->setErrorStore($errorStore);
+		$expected = '<div class="form-group has-error"><label class="control-label">Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="Red">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="Blue">Blue</label></div></div><p class="help-block">Sample error</p></div>';
+		$options = array(
+			'Red',
+			'Blue',
+		);
+		$result = $this->form->radio('Choose color', 'color', $options)->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderGroupOfRadiosWithOldInput()
+	{
+		$oldInput = Mockery::mock('AdamWathan\Form\OldInput\OldInputInterface');
+		$oldInput->shouldReceive('hasOldInput')->andReturn(true);
+		$oldInput->shouldReceive('getOldInput')->andReturn('red');
+
+		$this->builder->setOldInputProvider($oldInput);
+
+		$expected = '<div class="form-group"><label class="control-label">Choose color</label><div><div class="radio"><label class="control-label"><input type="radio" name="color" value="red" checked="checked">Red</label></div><div class="radio"><label class="control-label"><input type="radio" name="color" value="blue">Blue</label></div></div></div>';
+		$options = array(
+			'red' => 'Red',
+			'blue' => 'Blue',
+		);
+		$result = $this->form->radio('Choose color', 'color', $options)->render();
+		$this->assertEquals($expected, $result);
+	}
 }
