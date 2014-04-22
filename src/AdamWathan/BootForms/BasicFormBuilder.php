@@ -108,7 +108,7 @@ class BasicFormBuilder
 
 	protected function createRadioListGroup($title, $name, $options)
 	{
-		$label = $this->builder->label($title, $name)->addClass('control-label');
+		$label = $this->builder->label($title, $name);
 		$control = $this->buildRadioList($name, $options);
 		$formGroup = new FormGroup($label, $control);
 		if ($this->builder->hasError($name)) {
