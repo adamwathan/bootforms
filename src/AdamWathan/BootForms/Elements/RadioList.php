@@ -9,6 +9,7 @@ class RadioList extends Element
 	public function __construct($radios)
 	{
 		$this->radios = $radios;
+		$this->setAttribute('style', 'margin-top: -10px');
 	}
 
 	public function render()
