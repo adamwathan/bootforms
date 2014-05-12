@@ -120,7 +120,7 @@ class BasicFormBuilder
 
 	protected function buildRadioList($name, $options)
 	{
-		$radios = [];
+		$radios = array();
 		if (! is_assoc($options)) {
 			$options = array_combine(array_values($options), array_values($options));
 		}
