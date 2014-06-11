@@ -357,6 +357,20 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+	public function testFormOpenMultipart()
+	{
+		$expected = '<form method="GET" action="" enctype="multipart/form-data">';
+		$result = $this->form->open()->get()->multipart()->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testFormOpenCustomEncoding()
+	{
+		$expected = '<form method="GET" action="" enctype="foobar">';
+		$result = $this->form->open()->get()->encodingType('foobar')->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	public function testFormOpenCustomAction()
 	{
 		$expected = '<form method="POST" action="/login">';
