@@ -434,4 +434,11 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$result = $this->form->select('Favorite Color', 'color', $options)->addClass('my-class')->render();
 		$this->assertEquals($expected, $result);
     }
+
+    public function testRenderTextGroupWithLabelClass()
+	{
+		$expected = '<div class="form-group"><label class="control-label required" for="email">Email</label><input type="text" name="email" id="email" class="form-control"></div>';
+		$result = $this->form->text('Email', 'email')->labelClass('required')->render();
+		$this->assertEquals($expected, $result);
+	}
 }
