@@ -27,6 +27,12 @@ class GroupWrapper
 		return $this->render();
 	}
 
+	public function labelClass($class)
+	{
+		$this->formGroup->label()->addClass($class);
+		return $this;
+	}
+
 	public function __call($method, $parameters)
 	{
 		call_user_func_array(array($this->formGroup->control(), $method), $parameters);
