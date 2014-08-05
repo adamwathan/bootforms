@@ -59,6 +59,13 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+	public function testRenderTextGroupWithInputGroup()
+	{
+		$expected = '<div class="form-group"><label class="control-label" for="email">Email</label><div class="input-group"><span class="input-group-addon">@</span><input type="text" name="email" id="email" class="form-control"></div></div>';
+		$result = $this->form->text('Email', 'email')->inputGroup()->beforeAddon('@')->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	public function testRenderTextGroupWithOldInput()
 	{
 		$oldInput = Mockery::mock('AdamWathan\Form\OldInput\OldInputInterface');
