@@ -81,4 +81,16 @@ class FormGroupTest extends PHPUnit_Framework_TestCase
         $result = $formGroup->render();
         $this->assertEquals($expected, $result);
     }
+
+    public function testCanRenderWithInputGroup()
+    {
+        $label = $this->builder->label('Site');
+        $text = $this->builder->text('site');
+        $formGroup = new FormGroup($label, $text);
+        $formGroup->inputGroup()->beforeAddon('www')->inputGroup()->afterAddon('.com.br');
+
+        $expected = '<div class="form-group"><label>Site</label><div class="input-group"><span class="input-group-addon">www</span><input type="text" name="site"><span class="input-group-addon">.com.br</span></div></div>';
+        $result = $formGroup->render();
+        $this->assertEquals($expected, $result);
+    }
 }
