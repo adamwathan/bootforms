@@ -49,7 +49,7 @@ class BootFormsServiceProvider extends ServiceProvider {
 	{
 		$this->app['adamwathan.form'] = $this->app->share(function($app)
 		{
-			$formBuilder = new FormBuilder;
+			$formBuilder = new FormBuilder();
 			$formBuilder->setErrorStore($app['adamwathan.form.errorstore']);
 			$formBuilder->setOldInputProvider($app['adamwathan.form.oldinput']);
 			$formBuilder->setToken($app['session.store']->getToken());

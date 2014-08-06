@@ -10,7 +10,7 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
 
 	public function setUp()
 	{
-		$this->builder = new FormBuilder;
+		$this->builder = new FormBuilder();
 		$this->form = new HorizontalFormBuilder($this->builder);
 	}
 
