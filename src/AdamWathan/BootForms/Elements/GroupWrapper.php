@@ -22,6 +22,11 @@ class GroupWrapper
 		return $this;
 	}
 
+	public function inputGroup($class = "")
+	{
+		return $this->formGroup->inputGroup($class);
+	}
+
 	public function __toString()
 	{
 		return $this->render();
