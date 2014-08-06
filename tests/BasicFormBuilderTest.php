@@ -10,7 +10,7 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 
 	public function setUp()
 	{
-		$this->builder = new FormBuilder;
+		$this->builder = new FormBuilder();
 		$this->form = new BasicFormBuilder($this->builder);
 	}
 
@@ -453,7 +453,7 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 
 	private function getStubObject()
 	{
-		$obj = new stdClass;
+		$obj = new stdClass();
 		$obj->email = 'johndoe@example.com';
 		$obj->first_name = 'John';
 		$obj->last_name = 'Doe';

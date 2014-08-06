@@ -8,7 +8,7 @@ class FormGroupTest extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $this->builder = new FormBuilder;
+        $this->builder = new FormBuilder();
     }
 
     public function testCanRenderBasicFormGroup()
