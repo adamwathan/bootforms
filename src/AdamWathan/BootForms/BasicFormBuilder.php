@@ -112,7 +112,7 @@ class BasicFormBuilder
 		$control = $this->buildRadioList($name, $options);
 		$formGroup = new FormGroup($label, $control);
 		if ($this->builder->hasError($name)) {
-			$formGroup->helpBlock(new HelpBlock($this->builder->getError($name)));
+			$formGroup->helpBlock($this->builder->getError($name));
 			$formGroup->addClass('has-error');
 		}
 		return $this->wrap($formGroup);
