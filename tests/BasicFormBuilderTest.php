@@ -440,8 +440,8 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
-    public function testCanAddClassToUnderlyingControl()
-    {
+	public function testCanAddClassToUnderlyingControl()
+	{
 		$expected = '<div class="form-group"><label class="control-label" for="color">Favorite Color</label><select name="color" id="color" class="form-control my-class"><option value="1">Red</option><option value="2">Green</option><option value="3">Blue</option></select></div>';
 
 		$options = array('1' => 'Red', '2' => 'Green', '3' => 'Blue');
@@ -522,5 +522,33 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$expected = '<div class="form-group"><label class="control-label" for="email">Email</label><input type="text" name="email" value="example@example.com" id="email" class="form-control"></div>';
 		$result = $this->form->text('Email', 'email')->render();
 		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderTextGroupWithLabelClass()
+	{
+		$expected = '<div class="form-group"><label class="control-label required" for="email">Email</label><input type="text" name="email" id="email" class="form-control"></div>';
+		$result = $this->form->text('Email', 'email')->labelClass('required')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testBindObject()
+	{
+		$object = $this->getStubObject();
+		$this->form->bind($object);
+		$expected = '<div class="form-group"><label class="control-label" for="first_name">First Name</label><input type="text" name="first_name" value="John" id="first_name" class="form-control"></div>';
+		$result = $this->form->text('First Name', 'first_name')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	private function getStubObject()
+	{
+		$obj = new stdClass;
+		$obj->email = 'johndoe@example.com';
+		$obj->first_name = 'John';
+		$obj->last_name = 'Doe';
+		$obj->date_of_birth = new \DateTime('1985-05-06');
+		$obj->gender = 'male';
+		$obj->terms = 'agree';
+		return $obj;
 	}
 }
