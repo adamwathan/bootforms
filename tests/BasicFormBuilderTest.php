@@ -144,6 +144,20 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+	public function testRenderButton()
+	{
+		$expected = '<button type="button" class="btn btn-default">Click Me</button>';
+		$result = $this->form->button('Click Me')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderButtonWithNameAndAlternateStyling()
+	{
+		$expected = '<button type="button" name="success" class="btn btn-success">Click Me</button>';
+		$result = $this->form->button('Click Me', 'success', 'btn-success')->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	public function testRenderSubmit()
 	{
 		$expected = '<button type="submit" class="btn btn-default">Submit</button>';

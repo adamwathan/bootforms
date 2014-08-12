@@ -49,6 +49,11 @@ class BasicFormBuilder
 		return $this->formGroup($label, $name, $control);
 	}
 
+	public function button($value, $name = null, $type = "btn-default")
+	{
+		return $this->builder->button($value, $name)->addClass('btn')->addClass($type);
+	}
+
 	public function submit($value = "Submit", $type = "btn-default")
 	{
 		return $this->builder->submit($value)->addClass('btn')->addClass($type);
