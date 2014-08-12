@@ -167,6 +167,13 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+	public function testRenderButton()
+	{
+		$expected = '<div class="form-group"><div class="col-lg-offset-2 col-lg-10"><button type="button" class="btn btn-default">Click Me</button></div></div>';
+		$result = $this->form->button('Click Me')->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	public function testRenderSubmit()
 	{
 		$expected = '<div class="form-group"><div class="col-lg-offset-2 col-lg-10"><button type="submit" class="btn btn-default">Submit</button></div></div>';

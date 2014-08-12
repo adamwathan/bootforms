@@ -61,6 +61,12 @@ class HorizontalFormBuilder extends BasicFormBuilder
 		return 'col-lg-' . $this->labelWidth;
 	}
 
+	public function button($value, $name = null, $type = "btn-default")
+	{
+		$button = $this->builder->button($value, $name)->addClass('btn')->addClass($type);
+		return new OffsetFormGroup($button, $this->controlWidth);
+	}
+
 	public function submit($value = "Submit", $type = "btn-default")
 	{
 		$button = $this->builder->submit($value)->addClass('btn')->addClass($type);
