@@ -66,6 +66,40 @@ $bootForm = new AdamWathan\BootForms\BootForm($basicBootFormsBuilder, $horizonta
 
 ## Using BootForms
 
+### Basic Usage
+
+BootForms lets you create a label and form control and wrap it all in a form group in one call.
+
+```php
+//  <div class="form-group">
+//    <label for="field_name">Field Label</label>
+//    <input type="text" class="form-control" id="field_name" name="field_name">
+//  </div>
+BootForm::text('Field Label', 'field_name')
+```
+
+If you need to customize your form elements in any way (such as adding a default value or placeholder to a text element), simply chain the calls you need to make and they will fall through to the underlying form element:
+
+```php
+// <div class="form-group">
+//    <label for="first_name">First Name</label>
+//    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="John Doe">
+// </div>
+BootForm::text('First Name', 'first_name')->placeholder('John Doe');
+
+// <div class="form-group">
+//   <label for="color">Color</label>
+//   <select class="form-control" id="color" name="color">
+//     <option value="red">Red</option>
+//     <option value="green" selected>Green</option>
+//   </select>
+// </div>
+BootForm::select('Color', 'color')->options(['red' => 'Red', 'green' => 'Green'])->select('green');
+```
+
+For more information about what's possible, check out the documentation for [my basic Form package.](https://github.com/adamwathan/form)
+
+
 ### Reduced Boilerplate
 
 Typical Bootstrap form boilerplate might look something like this:
@@ -73,24 +107,24 @@ Typical Bootstrap form boilerplate might look something like this:
 ```html
 <form>
   <div class="form-group">
-    <label class="control_label" for="first_name">First Name</label>
-    <input type="text" class="form-control" id="first_name">
+    <label for="first_name">First Name</label>
+    <input type="text" class="form-control" name="first_name" id="first_name">
   </div>
   <div class="form-group">
-    <label class="control_label" for="last_name">Last Name</label>
-    <input type="text" class="form-control" id="last_name">
+    <label for="last_name">Last Name</label>
+    <input type="text" class="form-control" name="last_name" id="last_name">
   </div>
   <div class="form-group">
-    <label class="control_label" for="date_of_birth">Date of Birth</label>
-    <input type="date" class="form-control" id="date_of_birth">
+    <label for="date_of_birth">Date of Birth</label>
+    <input type="date" class="form-control" name="date_of_birth" id="date_of_birth">
   </div>
   <div class="form-group">
-    <label class="control_label" for="email">Email address</label>
-    <input type="email" class="form-control" id="email">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" name="email" id="email">
   </div>
   <div class="form-group">
-    <label class="control_label" for="password">Password</label>
-    <input type="password" class="form-control" id="password">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" id="password">
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
@@ -145,7 +179,7 @@ Essentially, this takes code that would normally look like this:
 
 ```php
 <div class="form-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
-	<label class="control_label" for="first_name">First Name</label>
+	<label for="first_name">First Name</label>
 	<input type="text" class="form-control" id="first_name">
   {{ $errors->first('first_name', '<p class="help-block">:message</p>') }}
 </div>
@@ -178,17 +212,3 @@ $controlWidth = 10;
   {{ BootForm::submit('Submit') }}
 {{ BootForm::close() }}
 ```
-
-### Customizing Form Elements
-
-If you need to customize your form elements in any way (such as adding a default value or placeholder to a text element), simply chain the calls you need to make and they will fall through to the underlying form element:
-
-```php
-// <div class="form-group">
-//    <label class="control_label" for="first_name">First Name</label>
-//    <input type="text" class="form-control" id="first_name" placeholder="John Doe">
-// </div>
-BootForm::text('First Name', 'first_name')->placeholder('John Doe');
-```
-
-For more information about what's possible, check out the documentation for [my basic Form package.](https://github.com/adamwathan/form)
