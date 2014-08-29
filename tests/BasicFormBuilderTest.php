@@ -465,6 +465,14 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+
+	public function testCanHideLabels()
+	{
+		$expected = '<div class="form-group"><label class="control-label sr-only" for="email">Email</label><input type="text" name="email" id="email" class="form-control"></div>';
+		$result = $this->form->text('Email', 'email')->hideLabel()->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	private function getStubObject()
 	{
 		$obj = new stdClass;

@@ -33,6 +33,12 @@ class GroupWrapper
 		return $this;
 	}
 
+	public function hideLabel()
+	{
+		$this->labelClass('sr-only');
+		return $this;
+	}
+
 	public function __call($method, $parameters)
 	{
 		call_user_func_array(array($this->formGroup->control(), $method), $parameters);
