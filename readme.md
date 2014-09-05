@@ -171,6 +171,16 @@ BootForms makes a few decisions for you and allows you to pare it down a bit mor
 {{ BootForm::close() }}
 ```
 
+If you need to add additional HTML attributes to your form or form fields, for instance to set the form's `action`/`method`, or to pre-populate form fields, you can do so with a chained call to the `attribute` method.  For instance, a custom form to edit existing data might look like this:
+
+```
+{{ BootForm::open()->attribute('action', '/users/' . $user->id . '/save')->attribute('method', 'POST') }}
+    {{ BootForm::text('Name', 'name')->attribute('value', $user->name) }}
+    {{ BootForm::text('Email', 'email')->attribute('value', $user->email) }}
+    {{ BootForm::submit('Submit') }}
+{{ BootForm::close() }}
+```
+
 ### Automatic Validation State
 
 Another nice thing about BootForms is that it will automatically add error states and error messages to your controls if it sees an error for that control in the error store.
