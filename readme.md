@@ -78,7 +78,11 @@ BootForms lets you create a label and form control and wrap it all in a form gro
 BootForm::text('Field Label', 'field_name')
 ```
 
-If you need to customize your form elements in any way (such as adding a default value or placeholder to a text element), simply chain the calls you need to make and they will fall through to the underlying form element:
+### Customizing Elements
+
+If you need to customize your form elements in any way (such as adding a default value or placeholder to a text element), simply chain the calls you need to make and they will fall through to the underlying form element.
+
+Attributes can be added either via the `attribute` method, or by simply using the attribute name as the method name.
 
 ```php
 // <div class="form-group">
@@ -95,10 +99,18 @@ BootForm::text('First Name', 'first_name')->placeholder('John Doe');
 //   </select>
 // </div>
 BootForm::select('Color', 'color')->options(['red' => 'Red', 'green' => 'Green'])->select('green');
+
+// <form method="GET" action="/users">
+BootForm::open()->get()->action('/users');
+
+// <div class="form-group">
+//    <label for="first_name">First Name</label>
+//    <input type="text" class="form-control" id="first_name" name="first_name" value="John Doe">
+// </div>
+BootForm::text('First Name', 'first_name')->defaultValue('John Doe');
 ```
 
 For more information about what's possible, check out the documentation for [my basic Form package.](https://github.com/adamwathan/form)
-
 
 ### Reduced Boilerplate
 
@@ -168,16 +180,6 @@ BootForms makes a few decisions for you and allows you to pare it down a bit mor
 	{{ BootForm::email('Email', 'email') }}
 	{{ BootForm::password('Password', 'password') }}
 	{{ BootForm::submit('Submit') }}
-{{ BootForm::close() }}
-```
-
-If you need to add additional HTML attributes to your form or form fields, for instance to set the form's `action`/`method`, or to pre-populate form fields, you can do so with a chained call to the `attribute` method.  For instance, a custom form to edit existing data might look like this:
-
-```
-{{ BootForm::open()->attribute('action', '/users/' . $user->id . '/save')->attribute('method', 'POST') }}
-    {{ BootForm::text('Name', 'name')->attribute('value', $user->name) }}
-    {{ BootForm::text('Email', 'email')->attribute('value', $user->email) }}
-    {{ BootForm::submit('Submit') }}
 {{ BootForm::close() }}
 ```
 
