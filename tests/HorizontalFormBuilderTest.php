@@ -69,6 +69,13 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+	public function testRenderTextGroupWithAttribute()
+	{
+		$expected = '<div class="form-group"><label class="col-lg-2 control-label" for="email">Email</label><div class="col-lg-10"><input type="text" name="email" id="email" class="form-control" maxlength="50"></div></div>';
+		$result = $this->form->text('Email', 'email')->attribute('maxlength', '50')->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	public function testRenderTextGroupWithError()
 	{
 		$errorStore = Mockery::mock('AdamWathan\Form\ErrorStore\ErrorStoreInterface');
