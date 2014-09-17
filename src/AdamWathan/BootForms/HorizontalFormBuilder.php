@@ -53,7 +53,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
 			$formGroup->addClass('has-error');
 		}
 
-		return $formGroup;
+		return $this->wrap($formGroup);
 	}
 
 	protected function getLabelClass()
