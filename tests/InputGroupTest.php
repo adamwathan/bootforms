@@ -5,35 +5,34 @@ use AdamWathan\BootForms\Elements\InputGroup;
 
 class InputGroupTest extends PHPUnit_Framework_TestCase
 {
-	public function setUp()
+	public function testCanRenderBasicText()
 	{
+		$input = new InputGroup('email');
+		$this->assertInstanceOf('AdamWathan\Form\Elements\Text', $input);
+
+		$expected = '<div class="input-group"><input type="text" name="email"></div>';
+		$result = $input->render();
+		$this->assertEquals($expected, $result);		
 	}
 
 	public function testCanRenderBeforeAddon()
 	{
-		$control = '<input type="text" name="username">';
-		$formGroup = m::mock('AdamWathan\BootForms\Elements\FormGroup');
-		$formGroup->shouldReceive('control')->once()->andReturn($control);
-		
-		$inputGroup = new InputGroup($formGroup, 'input-group-lg');
-		$this->assertEquals($formGroup, $inputGroup->beforeAddon('@'));
-		
-		$expected = '<div class="input-group input-group-lg"><span class="input-group-addon">@</span>'.$control.'</div>';
-		$result = $inputGroup->render();
-		$this->assertEquals($expected, $result);
+		$input = new InputGroup('username');
+		$this->assertEquals($input, $input->beforeAddon('@'));
+
+		$expected = '<div class="input-group"><span class="input-group-addon">@</span><input type="text" name="username"></div>';
+		$result = $input->render();
+		$this->assertEquals($expected, $result);		
 	}
 
-	public function testCanRenderAfterAddon()
+	public function testCanRenderAfterAddonAndType()
 	{
-		$control = '<input type="text" name="username">';
-		$formGroup = m::mock('AdamWathan\BootForms\Elements\FormGroup');
-		$formGroup->shouldReceive('control')->once()->andReturn($control);
-		
-		$inputGroup = new InputGroup($formGroup, 'input-group-lg');
-		$this->assertEquals($formGroup, $inputGroup->afterAddon(',00'));
-		
-		$expected = '<div class="input-group input-group-lg">'.$control.'<span class="input-group-addon">,00</span></div>';
-		$result = $inputGroup->render();
-		$this->assertEquals($expected, $result);
+		$input = new InputGroup('mail');
+		$this->assertEquals($input, $input->type('email'));
+		$this->assertEquals($input, $input->afterAddon('@domain.com'));
+
+		$expected = '<div class="input-group"><input type="email" name="mail"><span class="input-group-addon">@domain.com</span></div>';
+		$result = $input->render();
+		$this->assertEquals($expected, $result);		
 	}
 }

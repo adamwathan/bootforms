@@ -59,13 +59,6 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
-	public function testRenderTextGroupWithInputGroup()
-	{
-		$expected = '<div class="form-group"><label class="control-label" for="email">Email</label><div class="input-group"><span class="input-group-addon">@</span><input type="text" name="email" id="email" class="form-control"></div></div>';
-		$result = $this->form->text('Email', 'email')->inputGroup()->beforeAddon('@')->render();
-		$this->assertEquals($expected, $result);
-	}
-
 	public function testRenderTextGroupWithOldInput()
 	{
 		$oldInput = Mockery::mock('AdamWathan\Form\OldInput\OldInputInterface');
@@ -455,6 +448,32 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->form->bind($object);
 		$expected = '<div class="form-group"><label class="control-label" for="first_name">First Name</label><input type="text" name="first_name" value="John" id="first_name" class="form-control"></div>';
 		$result = $this->form->text('First Name', 'first_name')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderInputGroupWithBeforeAddon()
+	{
+		$expected = '<div class="form-group"><label class="control-label" for="username">Username</label><div class="input-group"><span class="input-group-addon">@</span><input type="text" name="username" id="username" class="form-control"></div></div>';
+		$result = $this->form->inputGroup('Username', 'username')->beforeAddon('@')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderInputGroupWithAfterAddon()
+	{
+		$expected = '<div class="form-group"><label class="control-label" for="site">Site</label><div class="input-group"><input type="text" name="site" id="site" class="form-control"><span class="input-group-addon">.com.br</span></div></div>';
+		$result = $this->form->inputGroup('Site', 'site')->afterAddon('.com.br')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderInputGroupChangeTypeWithBothAddon()
+	{
+		$expected = '<div class="form-group"><label class="control-label" for="secret">Secret</label><div class="input-group"><span class="input-group-addon">before</span><input type="password" name="secret" id="secret" class="form-control"><span class="input-group-addon">after</span></div></div>';
+		$result = $this->form
+			->inputGroup('Secret', 'secret')
+			->type('password')
+			->beforeAddon('before')
+			->afterAddon('after')
+			->render();
 		$this->assertEquals($expected, $result);
 	}
 

@@ -5,6 +5,7 @@ use AdamWathan\BootForms\Elements\FormGroup;
 use AdamWathan\BootForms\Elements\CheckGroup;
 use AdamWathan\BootForms\Elements\HelpBlock;
 use AdamWathan\BootForms\Elements\GroupWrapper;
+use AdamWathan\BootForms\Elements\InputGroup;
 
 class BasicFormBuilder
 {
@@ -156,6 +157,14 @@ class BasicFormBuilder
 		}
 
 		return $this->wrap($formGroup);
+	}
+
+	public function inputGroup($label, $name, $value = null)
+	{
+		$control = new InputGroup($name);
+		$control->value($value);
+
+		return $this->formGroup($label, $name, $control);
 	}
 
 	public function __call($method, $parameters)
