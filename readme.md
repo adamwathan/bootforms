@@ -10,7 +10,7 @@ You can install this package via Composer by including the following in your `co
 ```json
 {
     "require": {
-        "adamwathan/bootforms": "v0.2"
+        "adamwathan/bootforms": "v0.4"
     }
 }
 ```
