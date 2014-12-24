@@ -5,17 +5,11 @@ BootForms builds on top of my more general [Form](https://github.com/adamwathan/
 
 ## Installing with Composer
 
-You can install this package via Composer by including the following in your `composer.json`:
+You can install this package via Composer by running this command in your terminal in the root of your project:
 
-```json
-{
-    "require": {
-        "adamwathan/bootforms": "v0.2"
-    }
-}
+```bash
+composer require adamwathan/bootforms
 ```
-
-*Note: you could also require `dev-master` to test the latest version, but make sure you drop your `minimum-stability` to `dev`.*
 
 ### Laravel 4
 
