@@ -1,6 +1,8 @@
 BootForms
 ===============
 
+[![Code Climate](https://codeclimate.com/github/adamwathan/bootforms/badges/gpa.svg)](https://codeclimate.com/github/adamwathan/bootforms)
+
 BootForms builds on top of my more general [Form](https://github.com/adamwathan/form) package by adding another layer of abstraction to rapidly generate markup for standard Bootstrap 3 forms. Probably not perfect for your super custom branded ready-for-release apps, but a *huge* time saver when you are still in the prototyping stage!
 
 ## Installing with Composer
