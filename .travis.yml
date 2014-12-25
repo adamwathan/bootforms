@@ -8,4 +8,4 @@ php:
 install: composer install --dev
 
 after_script:
-  - php composer/bin/test-reporter
+  - php vendor/bin/test-reporter
