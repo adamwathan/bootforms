@@ -15,22 +15,6 @@ composer require adamwathan/bootforms
 
 ### Laravel 5
 
-Changes in Laravel 5 require you to include the Illuminate\HTML package via composer.
-
-```php
-'providers' => array(
-		//...
-		'Illuminate\Html\HtmlServiceProvider','
-	),
-```
-And the facade.
-
-```php
-'aliases' => array(
-		//...
-		'HTML'	=> 'Illuminate\Html\HtmlFacade',
-	),
-```
 Laravel 5 had changes to Blade templating. The new way to echo is by using 
 
 ```php
