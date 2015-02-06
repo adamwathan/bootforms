@@ -13,6 +13,19 @@ You can install this package via Composer by running this command in your termin
 composer require adamwathan/bootforms
 ```
 
+### Laravel 5
+
+Laravel 5 had changes to Blade templating. The new way to echo is by using 
+
+```php
+{!! BootForm::text('Email', 'email') !!}
+```
+Instead of 
+
+```php
+{{ BootForm::text('Email', 'email') }}
+```
+
 ### Laravel 4
 
 If you are using Laravel 4, you can get started very quickly by registering the included service provider.
