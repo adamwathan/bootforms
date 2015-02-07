@@ -17,22 +17,22 @@ composer require adamwathan/bootforms
 
 If you are using Laravel 4 or 5, you can get started very quickly by registering the included service provider.
 
-Modify the `providers` array in `app/config/app.php` to include the `BootFormsServiceProvider`:
+Modify the `providers` array in `config/app.php` to include the `BootFormsServiceProvider`:
 
 ```php
-'providers' => array(
+'providers' => [
     //...
     'AdamWathan\BootForms\BootFormsServiceProvider'
-  ),
+  ],
 ```
 
-Add the `BootForm` facade to the `aliases` array in `app/config/app.php`:
+Add the `BootForm` facade to the `aliases` array in `config/app.php`:
 
 ```php
-'aliases' => array(
+'aliases' => [
     //...
     'BootForm' => 'AdamWathan\BootForms\Facades\BootForm'
-  ),
+  ],
 ```
 
 You can now start using BootForms by calling methods directly on the `BootForm` facade:
