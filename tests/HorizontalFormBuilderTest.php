@@ -56,7 +56,7 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
 
 	public function testRenderTextGroupWithCustomWidths()
 	{
-		$this->form->setLabelWidth(3)->setControlWidth(9);
+		$this->form->setColumnSizes(['lg' => [3, 9]]);
 		$expected = '<div class="form-group"><label class="col-lg-3 control-label" for="email">Email</label><div class="col-lg-9"><input type="text" name="email" id="email" class="form-control"></div></div>';
 		$result = $this->form->text('Email', 'email')->render();
 		$this->assertEquals($expected, $result);
