@@ -7,7 +7,7 @@ class HorizontalFormGroup extends FormGroup
 {
 	protected $controlSizes;
 
-	public function __construct(Label $label, Element $control, $controlSizes = ['lg' => 10])
+	public function __construct(Label $label, Element $control, $controlSizes)
 	{
 		parent::__construct($label, $control);
 		$this->controlSizes = $controlSizes;
@@ -37,7 +37,11 @@ class HorizontalFormGroup extends FormGroup
 
 	protected function getControlClass()
 	{
-		return 'col-lg-' . $this->controlSizes['lg'];
+		$class = '';
+		foreach ($this->controlSizes as $breakpoint => $size) {
+			$class .= sprintf('col-%s-%s ', $breakpoint, $size);
+		}
+		return trim($class);
 	}
 
 	public function __call($method, $parameters)

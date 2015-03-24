@@ -59,7 +59,11 @@ class HorizontalFormBuilder extends BasicFormBuilder
 
 	protected function getLabelClass()
 	{
-		return 'col-lg-' . $this->columnSizes['lg'][0];
+		$class = '';
+		foreach ($this->columnSizes as $breakpoint => $sizes) {
+			$class .= sprintf('col-%s-%s ', $breakpoint, $sizes[0]);
+		}
+		return trim($class);
 	}
 
 	public function button($value, $name = null, $type = "btn-default")

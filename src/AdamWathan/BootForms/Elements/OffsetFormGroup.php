@@ -37,8 +37,13 @@ class OffsetFormGroup extends Element
 
 	protected function getControlClass()
 	{
-		$offset = 12 - $this->columnSizes['lg'][1];
-		return 'col-lg-offset-' . $offset . ' col-lg-' . $this->columnSizes['lg'][1];
+		$class = '';
+		foreach ($this->columnSizes as $breakpoint => $sizes) {
+			$offset = 12 - $sizes[1];
+			$class .= sprintf('col-%s-offset-%s col-%s-%s ', $breakpoint, $offset, $breakpoint, $sizes[1]);
+		}
+		return trim($class);
+
 	}
 
 	public function __call($method, $parameters)
