@@ -8,27 +8,19 @@ use AdamWathan\BootForms\Elements\HelpBlock;
 
 class HorizontalFormBuilder extends BasicFormBuilder
 {
-	private $labelWidth;
-	private $controlWidth;
+	private $columnSizes;
 
 	protected $builder;
 
-	public function __construct(FormBuilder $builder)
+	public function __construct(FormBuilder $builder, $columnSizes = ['lg' => [2, 10]])
 	{
 		$this->builder = $builder;
-		$this->labelWidth = 2;
-		$this->controlWidth = 10;
+		$this->columnSizes = $columnSizes;
 	}
 
-	public function setLabelWidth($width)
+	public function setColumnSizes($columnSizes)
 	{
-		$this->labelWidth = $width;
-		return $this;
-	}
-
-	public function setControlWidth($width)
-	{
-		$this->controlWidth = $width;
+		$this->columnSizes = $columnSizes;
 		return $this;
 	}
 
@@ -46,7 +38,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
 
 		$control->id($name)->addClass('form-control');
 
-		$formGroup = new HorizontalFormGroup($label, $control, $this->controlWidth);
+		$formGroup = new HorizontalFormGroup($label, $control, $this->getControlSizes());
 
 		if ($this->builder->hasError($name)) {
 			$formGroup->helpBlock($this->builder->getError($name));
@@ -56,21 +48,34 @@ class HorizontalFormBuilder extends BasicFormBuilder
 		return $this->wrap($formGroup);
 	}
 
+	protected function getControlSizes()
+	{
+		$controlSizes = [];
+		foreach ($this->columnSizes as $breakpoint => $sizes) {
+			$controlSizes[$breakpoint] = $sizes[1];
+		}
+		return $controlSizes;
+	}
+
 	protected function getLabelClass()
 	{
-		return 'col-lg-' . $this->labelWidth;
+		$class = '';
+		foreach ($this->columnSizes as $breakpoint => $sizes) {
+			$class .= sprintf('col-%s-%s ', $breakpoint, $sizes[0]);
+		}
+		return trim($class);
 	}
 
 	public function button($value, $name = null, $type = "btn-default")
 	{
 		$button = $this->builder->button($value, $name)->addClass('btn')->addClass($type);
-		return new OffsetFormGroup($button, $this->controlWidth);
+		return new OffsetFormGroup($button, $this->columnSizes);
 	}
 
 	public function submit($value = "Submit", $type = "btn-default")
 	{
 		$button = $this->builder->submit($value)->addClass('btn')->addClass($type);
-		return new OffsetFormGroup($button, $this->controlWidth);
+		return new OffsetFormGroup($button, $this->columnSizes);
 	}
 
 	public function checkbox($label, $name)
@@ -78,7 +83,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
 		$control = $this->builder->checkbox($name);
 		$checkGroup = $this->checkGroup($label, $name, $control)->addClass('checkbox');
 
-		return new OffsetFormGroup($checkGroup, $this->controlWidth);
+		return new OffsetFormGroup($checkGroup, $this->columnSizes);
 	}
 
 	protected function checkGroup($label, $name, $control)
@@ -104,7 +109,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
 		$control = $this->builder->radio($name, $value);
 		$checkGroup = $this->checkGroup($label, $name, $control)->addClass('radio');
 
-		return new OffsetFormGroup($checkGroup, $this->controlWidth);
+		return new OffsetFormGroup($checkGroup, $this->columnSizes);
 	}
 
 	public function file($label, $name, $value = null)
@@ -117,7 +122,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
 
 		$control->id($name);
 
-		$formGroup = new HorizontalFormGroup($label, $control, $this->controlWidth);
+		$formGroup = new HorizontalFormGroup($label, $control, $this->getControlSizes());
 
 		if ($this->builder->hasError($name)) {
 			$formGroup->helpBlock($this->builder->getError($name));

@@ -6,17 +6,17 @@ use AdamWathan\Form\Elements\Label;
 class OffsetFormGroup extends Element
 {
 	protected $control;
-	protected $controlWidth;
+	protected $columnSizes;
 
-	public function __construct(Element $control, $controlWidth = 10)
+	public function __construct(Element $control, $columnSizes)
 	{
 		$this->control = $control;
-		$this->controlWidth = $controlWidth;
+		$this->columnSizes = $columnSizes;
 		$this->addClass('form-group');
 	}
 
 	public function render()
-	{		
+	{
 		$html  = '<div';
 		$html .= $this->renderAttributes();
 		$html .= '>';
@@ -29,16 +29,21 @@ class OffsetFormGroup extends Element
 		return $html;
 	}
 
-	public function setControlWidth($width)
+	public function setColumnSizes($columnSizes)
 	{
-		$this->controlWidth = $width;
+		$this->columnSizes = $columnSizes;
 		return $this;
 	}
 
 	protected function getControlClass()
 	{
-		$offset = 12 - $this->controlWidth;
-		return 'col-lg-offset-' . $offset . ' col-lg-' . $this->controlWidth;
+		$class = '';
+		foreach ($this->columnSizes as $breakpoint => $sizes) {
+			$offset = 12 - $sizes[1];
+			$class .= sprintf('col-%s-offset-%s col-%s-%s ', $breakpoint, $offset, $breakpoint, $sizes[1]);
+		}
+		return trim($class);
+
 	}
 
 	public function __call($method, $parameters)

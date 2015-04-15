@@ -5,16 +5,16 @@ use AdamWathan\Form\Elements\Label;
 
 class HorizontalFormGroup extends FormGroup
 {
-	protected $controlWidth;
+	protected $controlSizes;
 
-	public function __construct(Label $label, Element $control, $controlWidth = 10)
+	public function __construct(Label $label, Element $control, $controlSizes)
 	{
 		parent::__construct($label, $control);
-		$this->controlWidth = $controlWidth;
+		$this->controlSizes = $controlSizes;
 	}
 
 	public function render()
-	{		
+	{
 		$html  = '<div';
 		$html .= $this->renderAttributes();
 		$html .= '>';
@@ -37,7 +37,11 @@ class HorizontalFormGroup extends FormGroup
 
 	protected function getControlClass()
 	{
-		return 'col-lg-' . $this->controlWidth;
+		$class = '';
+		foreach ($this->controlSizes as $breakpoint => $size) {
+			$class .= sprintf('col-%s-%s ', $breakpoint, $size);
+		}
+		return trim($class);
 	}
 
 	public function __call($method, $parameters)

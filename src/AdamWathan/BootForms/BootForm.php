@@ -14,17 +14,15 @@ class BootForm
 		$this->horizontalFormBuilder = $horizontalFormBuilder;
 	}
 
-
 	public function open()
 	{
 		$this->builder = $this->basicFormBuilder;
 		return $this->builder->open();
 	}
 
-	public function openHorizontal($labelWidth, $controlWidth)
+	public function openHorizontal($columnSizes)
 	{
-		$this->horizontalFormBuilder->setLabelWidth($labelWidth);
-		$this->horizontalFormBuilder->setControlWidth($controlWidth);
+		$this->horizontalFormBuilder->setColumnSizes($columnSizes);
 		$this->builder = $this->horizontalFormBuilder;
 		return $this->builder->open();
 	}
