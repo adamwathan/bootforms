@@ -56,7 +56,7 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
 
 	public function testRenderTextGroupWithCustomWidths()
 	{
-		$this->form->setColumnSizes(['lg' => [3, 9]]);
+		$this->form->setColumnSizes(array('lg' => array(3, 9)));
 		$expected = '<div class="form-group"><label class="col-lg-3 control-label" for="email">Email</label><div class="col-lg-9"><input type="text" name="email" id="email" class="form-control"></div></div>';
 		$result = $this->form->text('Email', 'email')->render();
 		$this->assertEquals($expected, $result);
@@ -64,7 +64,7 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
 
 	public function testRenderTextGroupWithMultipleBreakpointSizes()
 	{
-		$this->form->setColumnSizes(['xs' => [5, 7], 'lg' => [3, 9]]);
+		$this->form->setColumnSizes(array('xs' => array(5, 7), 'lg' => array(3, 9)));
 		$expected = '<div class="form-group"><label class="col-xs-5 col-lg-3 control-label" for="email">Email</label><div class="col-xs-7 col-lg-9"><input type="text" name="email" id="email" class="form-control"></div></div>';
 		$result = $this->form->text('Email', 'email')->render();
 		$this->assertEquals($expected, $result);
@@ -191,7 +191,7 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
 
 	public function testRenderButtonWithCustomColumnSizes()
 	{
-		$this->form->setColumnSizes(['lg' => [3, 9]]);
+		$this->form->setColumnSizes(array('lg' => array(3, 9)));
 		$expected = '<div class="form-group"><div class="col-lg-offset-3 col-lg-9"><button type="button" class="btn btn-default">Click Me</button></div></div>';
 		$result = $this->form->button('Click Me')->render();
 		$this->assertEquals($expected, $result);
@@ -199,7 +199,7 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
 
 	public function testRenderButtonWithMultipleBreakpointSizes()
 	{
-		$this->form->setColumnSizes(['xs' => [5, 7], 'lg' => [3, 9]]);
+		$this->form->setColumnSizes(array('xs' => array(5, 7), 'lg' => array(3, 9)));
 		$expected = '<div class="form-group"><div class="col-xs-offset-5 col-xs-7 col-lg-offset-3 col-lg-9"><button type="button" class="btn btn-default">Click Me</button></div></div>';
 		$result = $this->form->button('Click Me')->render();
 		$this->assertEquals($expected, $result);
