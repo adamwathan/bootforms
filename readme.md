@@ -175,15 +175,18 @@ And reduces it to this:
 
 ### Horizontal Forms
 
-To use a horizontal form instead of the standard basic form, simply swap the `BootForm::open()` call:
+To use a horizontal form instead of the standard basic form, simply swap the `BootForm::open()` call with a call to `openHorizontal($columnSizes)` instead:
 
 ```php
 
 // Width in columns of the left and right side
-$labelWidth = 2;
-$controlWidth = 10;
+// for each breakpoint you'd like to specify.
+$columnSizes = [
+  'sm' => [4, 8],
+  'lg' => [2, 10]
+];
 
-{!! BootForm::openHorizontal($labelWidth, $controlWidth) !!}
+{!! BootForm::openHorizontal($columnSizes) !!}
   {!! BootForm::text('First Name', 'first_name') !!}
   {!! BootForm::text('Last Name', 'last_name') !!}
   {!! BootForm::text('Date of Birth', 'date_of_birth') !!}
