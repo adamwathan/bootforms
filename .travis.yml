@@ -6,4 +6,4 @@ php:
 
 install: composer install --dev
 
-after_script: ./codeclimate.sh
+after_script: php vendor/bin/coveralls

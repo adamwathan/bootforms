@@ -16,6 +16,18 @@
         </testsuite>
     </testsuites>
 
+    <filter>
+        <blacklist>
+            <directory suffix=".php">.</directory>
+        </blacklist>
+        <whitelist>
+            <directory suffix=".php">./src</directory>
+            <exclude>
+                <file>./src/AdamWathan/BootForms/BootFormsServiceProvider.php</file>
+                <file>./src/AdamWathan/BootForms/Facades/BootForm.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
     <logging>
         <log type="coverage-clover" target="build/logs/clover.xml"/>
     </logging>
