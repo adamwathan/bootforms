@@ -350,10 +350,24 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+	public function testRenderInlineCheckboxWithChaining()
+	{
+		$expected = '<label class="checkbox-inline"><input type="checkbox" name="DJ" value="meal" chain="link">Checkit!</label>';
+		$result = $this->form->inlineCheckbox('Checkit!', 'DJ')->value('meal')->chain('link')->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	public function testRenderInlineRadio()
 	{
 		$expected = '<label class="radio-inline"><input type="radio" name="color" value="Red">Red</label>';
 		$result = $this->form->inlineRadio('Red', 'color')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderInlineRadioWithChaining()
+	{
+		$expected = '<label class="radio-inline"><input type="radio" name="colour" value="Canada Red" chain="link">Canada Red</label>';
+		$result = $this->form->inlineRadio('Canada Red', 'colour')->chain('link')->render();
 		$this->assertEquals($expected, $result);
 	}
 
