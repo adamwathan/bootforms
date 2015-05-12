@@ -343,10 +343,17 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
-	public function testRenderInlineCheckbox()
+	public function testRenderInlineCheckboxMethod()
 	{
 		$expected = '<label class="checkbox-inline"><input type="checkbox" name="terms" value="1">Agree to Terms</label>';
 		$result = $this->form->inlineCheckbox('Agree to Terms', 'terms')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderInlineCheckboxModifier()
+	{
+		$expected = '<label class="checkbox-inline"><input type="checkbox" name="terms" value="1">Agree to Terms</label>';
+		$result = $this->form->checkbox('Agree to Terms', 'terms')->inline()->render();
 		$this->assertEquals($expected, $result);
 	}
 
@@ -357,10 +364,17 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
-	public function testRenderInlineRadio()
+	public function testRenderInlineRadioMethod()
 	{
 		$expected = '<label class="radio-inline"><input type="radio" name="color" value="Red">Red</label>';
 		$result = $this->form->inlineRadio('Red', 'color')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderInlineRadioModifier()
+	{
+		$expected = '<label class="radio-inline"><input type="radio" name="color" value="Red">Red</label>';
+		$result = $this->form->radio('Red', 'color')->inline()->render();
 		$this->assertEquals($expected, $result);
 	}
 
