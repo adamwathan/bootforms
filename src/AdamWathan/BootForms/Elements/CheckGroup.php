@@ -6,6 +6,7 @@ use AdamWathan\Form\Elements\Label;
 class CheckGroup extends FormGroup
 {
 	protected $label;
+	protected $inline = false;
 
 	public function __construct(Label $label)
 	{
@@ -13,7 +14,11 @@ class CheckGroup extends FormGroup
 	}
 
 	public function render()
-	{		
+	{
+		if ($this->inline === true) {
+			return $this->label;
+		}
+
 		$html  = '<div';
 		$html .= $this->renderAttributes();
 		$html .= '>';
@@ -23,6 +28,12 @@ class CheckGroup extends FormGroup
 		$html .= '</div>';
 
 		return $html;
+	}
+
+	public function inline()
+	{
+		$this->inline = true;
+		return $this;
 	}
 
 	public function control()

@@ -343,45 +343,45 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
-	public function testRenderInlineCheckboxMethod()
+	public function testRenderInlineCheckboxType()
 	{
 		$expected = '<label class="checkbox-inline"><input type="checkbox" name="terms" value="1">Agree to Terms</label>';
 		$result = $this->form->inlineCheckbox('Agree to Terms', 'terms')->render();
 		$this->assertEquals($expected, $result);
 	}
 
-	public function testRenderInlineCheckboxModifier()
-	{
-		$expected = '<label class="checkbox-inline"><input type="checkbox" name="terms" value="1">Agree to Terms</label>';
-		$result = $this->form->checkbox('Agree to Terms', 'terms')->inline()->render();
-		$this->assertEquals($expected, $result);
-	}
+	// public function testRenderInlineCheckboxModifier()
+	// {
+	// 	$expected = '<label class="checkbox-inline"><input type="checkbox" name="terms" value="1">Agree to Terms</label>';
+	// 	$result = $this->form->checkbox('Agree to Terms', 'terms')->inline()->render();
+	// 	$this->assertEquals($expected, $result);
+	// }
 
 	public function testRenderInlineCheckboxWithChaining()
 	{
-		$expected = '<label class="checkbox-inline"><input type="checkbox" name="DJ" value="meal" chain="link">Checkit!</label>';
-		$result = $this->form->inlineCheckbox('Checkit!', 'DJ')->value('meal')->chain('link')->render();
+		$expected = '<label class="checkbox-inline"><input type="checkbox" name="DJ" value="meal" chain="link" checked="checked">Checkit!</label>';
+		$result = $this->form->inlineCheckbox('Checkit!', 'DJ')->value('meal')->chain('link')->check()->render();
 		$this->assertEquals($expected, $result);
 	}
 
-	public function testRenderInlineRadioMethod()
+	public function testRenderInlineRadioType()
 	{
 		$expected = '<label class="radio-inline"><input type="radio" name="color" value="Red">Red</label>';
 		$result = $this->form->inlineRadio('Red', 'color')->render();
 		$this->assertEquals($expected, $result);
 	}
 
-	public function testRenderInlineRadioModifier()
-	{
-		$expected = '<label class="radio-inline"><input type="radio" name="color" value="Red">Red</label>';
-		$result = $this->form->radio('Red', 'color')->inline()->render();
-		$this->assertEquals($expected, $result);
-	}
+	// public function testRenderInlineRadioModifier()
+	// {
+	// 	$expected = '<label class="radio-inline"><input type="radio" name="color" value="Red">Red</label>';
+	// 	$result = $this->form->radio('Red', 'color')->inline()->render();
+	// 	$this->assertEquals($expected, $result);
+	// }
 
 	public function testRenderInlineRadioWithChaining()
 	{
-		$expected = '<label class="radio-inline"><input type="radio" name="colour" value="Canada Red" chain="link">Canada Red</label>';
-		$result = $this->form->inlineRadio('Canada Red', 'colour')->chain('link')->render();
+		$expected = '<label class="radio-inline"><input type="radio" name="colour" value="Canada Red" chain="link" checked="checked">Canada Red</label>';
+		$result = $this->form->inlineRadio('Canada Red', 'colour')->chain('link')->check()->render();
 		$this->assertEquals($expected, $result);
 	}
 
