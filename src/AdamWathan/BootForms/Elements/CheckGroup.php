@@ -16,7 +16,7 @@ class CheckGroup extends FormGroup
 	public function render()
 	{
 		if ($this->inline === true) {
-			return $this->label;
+			return $this->label->render();
 		}
 
 		$html  = '<div';
