@@ -343,14 +343,14 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
-	public function testRenderInlineCheckbox()
+	public function testRenderInlineCheckboxFallback()
 	{
 		$expected = '<label class="checkbox-inline"><input type="checkbox" name="terms" value="1">Agree to Terms</label>';
 		$result = $this->form->inlineCheckbox('Agree to Terms', 'terms')->render();
 		$this->assertEquals($expected, $result);
 	}
 
-	public function testRenderInlineCheckboxWithChaining()
+	public function testRenderInlineCheckboxFallbackWithChaining()
 	{
 		$expected = '<label class="checkbox-inline"><input type="checkbox" name="DJ" value="meal" chain="link" checked="checked">Checkit!</label>';
 		$result = $this->form->inlineCheckbox('Checkit!', 'DJ')->value('meal')->chain('link')->check()->render();
@@ -371,14 +371,14 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
-	public function testRenderInlineRadio()
+	public function testRenderInlineRadioFallback()
 	{
 		$expected = '<label class="radio-inline"><input type="radio" name="color" value="Red">Red</label>';
 		$result = $this->form->inlineRadio('Red', 'color')->render();
 		$this->assertEquals($expected, $result);
 	}
 
-	public function testRenderInlineRadioWithChaining()
+	public function testRenderInlineRadioFallbackWithChaining()
 	{
 		$expected = '<label class="radio-inline"><input type="radio" name="colour" value="Canada Red" chain="link" checked="checked">Canada Red</label>';
 		$result = $this->form->inlineRadio('Canada Red', 'colour')->chain('link')->check()->render();
