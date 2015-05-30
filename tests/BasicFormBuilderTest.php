@@ -399,6 +399,13 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+	public function testRenderInlineModifierOnUnsupportedElement()
+	{
+		$expected = '<div class="form-group"><label class="control-label" for="name">Name</label><input type="text" name="name" id="name" class="form-control" inline="inline"></div>';
+		$result = $this->form->text('Name', 'name')->inline()->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	public function testFormOpen()
 	{
 		$expected = '<form method="POST" action="">';
@@ -506,7 +513,6 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$result = $this->form->text('First Name', 'first_name')->render();
 		$this->assertEquals($expected, $result);
 	}
-
 
 	public function testCanHideLabels()
 	{

@@ -33,6 +33,10 @@ class CheckGroup extends FormGroup
 	public function inline()
 	{
 		$this->inline = true;
+
+		$class = $this->control()->type() . '-inline'; // Requires base form PR #49 merge.
+		$this->label->removeClass('control-label')->addClass($class); // Requires base form PR #49 merge.
+
 		return $this;
 	}
 

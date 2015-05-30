@@ -120,7 +120,7 @@ class BasicFormBuilder
 	public function inlineCheckbox($label, $name, $checked = false)
 	{
 		$control = $this->builder->checkbox($name);
-		$label = $this->builder->label($label)->after($control)->addClass('checkbox-inline');
+		$label = $this->builder->label($label)->after($control);
 
 		if ($checked) {
 			$control->check();
@@ -130,7 +130,7 @@ class BasicFormBuilder
 
 		$checkGroup = new CheckGroup($label);
 		$checkGroup->inline();
-		
+
 		return $checkGroup;
 	}
 
@@ -138,7 +138,7 @@ class BasicFormBuilder
 	{
 		$value = $value ?: $label;
 		$control = $this->builder->radio($name, $value);
-		$label = $this->builder->label($label, $name)->after($control)->addClass('radio-inline');
+		$label = $this->builder->label($label, $name)->after($control);
 
 		$checkGroup = new CheckGroup($label);
 		$checkGroup->inline();

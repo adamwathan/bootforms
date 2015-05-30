@@ -21,7 +21,7 @@ class GroupWrapper
 		$this->formGroup->helpBlock($text);
 		return $this;
 	}
-	
+
 	public function __toString()
 	{
 		return $this->render();
@@ -36,6 +36,12 @@ class GroupWrapper
 	public function hideLabel()
 	{
 		$this->labelClass('sr-only');
+		return $this;
+	}
+
+	public function inline()
+	{
+		$this->formGroup->inline();
 		return $this;
 	}
 
