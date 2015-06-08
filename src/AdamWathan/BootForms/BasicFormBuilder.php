@@ -173,7 +173,9 @@ class BasicFormBuilder
 	public function inputGroup($label, $name, $value = null)
 	{
 		$control = new InputGroup($name);
-		$control->value($value);
+		if (!is_null($value) || !is_null($value = $this->getValueFor($name))) {
+			$control->value($value);
+		}
 
 		return $this->formGroup($label, $name, $control);
 	}

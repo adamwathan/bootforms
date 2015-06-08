@@ -499,6 +499,65 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+	public function testRenderInputGroupWithValue()
+	{
+		$expected = '<div class="form-group"><label class="control-label" for="test">Test</label><div class="input-group"><input type="text" name="test" id="test" class="form-control" value="abc"></div></div>';
+		$result = $this->form->inputGroup('Test', 'test')->value('abc')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderInputGroupWithOldInput()
+	{
+		$oldInput = Mockery::mock('AdamWathan\Form\OldInput\OldInputInterface');
+		$oldInput->shouldReceive('hasOldInput')->andReturn(true);
+		$oldInput->shouldReceive('getOldInput')->andReturn('xyz');
+
+		$this->builder->setOldInputProvider($oldInput);
+
+		$expected = '<div class="form-group"><label class="control-label" for="test">Test</label><div class="input-group"><input type="text" name="test" value="xyz" id="test" class="form-control"></div></div>';
+		$result = $this->form->inputGroup('Test', 'test')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderInputGroupWithOldInputAndDefaultValue()
+	{
+		$oldInput = Mockery::mock('AdamWathan\Form\OldInput\OldInputInterface');
+		$oldInput->shouldReceive('hasOldInput')->andReturn(true);
+		$oldInput->shouldReceive('getOldInput')->andReturn('xyz');
+
+		$this->builder->setOldInputProvider($oldInput);
+
+		$expected = '<div class="form-group"><label class="control-label" for="test">Test</label><div class="input-group"><input type="text" name="test" value="xyz" id="test" class="form-control"></div></div>';
+		$result = $this->form->inputGroup('Test', 'test')->defaultValue('acb')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderInputGroupWithDefaultValue()
+	{
+		$expected = '<div class="form-group"><label class="control-label" for="test">Test</label><div class="input-group"><input type="text" name="test" id="test" class="form-control" value="acb"></div></div>';
+		$result = $this->form->inputGroup('Test', 'test')->defaultValue('acb')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderInputGroupWithOldInputAndError()
+	{
+		$oldInput = Mockery::mock('AdamWathan\Form\OldInput\OldInputInterface');
+		$oldInput->shouldReceive('hasOldInput')->andReturn(true);
+		$oldInput->shouldReceive('getOldInput')->andReturn('abc');
+
+		$this->builder->setOldInputProvider($oldInput);
+
+		$errorStore = Mockery::mock('AdamWathan\Form\ErrorStore\ErrorStoreInterface');
+		$errorStore->shouldReceive('hasError')->andReturn(true);
+		$errorStore->shouldReceive('getError')->andReturn('Test is required.');
+
+		$this->builder->setErrorStore($errorStore);
+
+		$expected = '<div class="form-group has-error"><label class="control-label" for="test">Test</label><div class="input-group"><input type="text" name="test" value="abc" id="test" class="form-control"></div><p class="help-block">Test is required.</p></div>';
+		$result = $this->form->inputGroup('Test', 'test')->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	private function getStubObject()
 	{
 		$obj = new stdClass;
