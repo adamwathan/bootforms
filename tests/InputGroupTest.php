@@ -35,4 +35,37 @@ class InputGroupTest extends PHPUnit_Framework_TestCase
 		$result = $input->render();
 		$this->assertEquals($expected, $result);		
 	}
+
+	public function testCanRenderWithValue()
+	{
+		$input = new InputGroup('test');
+		$input = $input->value('abc');
+		$expected = '<div class="input-group"><input type="text" name="test" value="abc"></div>';
+		$result = $input->render();
+		$this->assertEquals($expected, $result);
+
+		$input = new InputGroup('test');
+		$input = $input->value(null);
+		$expected = '<div class="input-group"><input type="text" name="test"></div>';
+		$result = $input->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testDefaultValue()
+	{
+		$input = new InputGroup('test');
+		$expected = '<div class="input-group"><input type="text" name="test" value="abc"></div>';
+		$result = $input->defaultValue('abc')->render();
+		$this->assertEquals($expected, $result);
+
+		$input = new InputGroup('test');
+		$expected = '<div class="input-group"><input type="text" name="test" value="xyz"></div>';
+		$result = $input->value('xyz')->defaultValue('abc')->render();
+		$this->assertEquals($expected, $result);
+
+		$input = new InputGroup('test');
+		$expected = '<div class="input-group"><input type="text" name="test" value="xyz"></div>';
+		$result = $input->defaultValue('abc')->value('xyz')->render();
+		$this->assertEquals($expected, $result);
+	}
 }
