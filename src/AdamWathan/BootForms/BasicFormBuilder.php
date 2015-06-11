@@ -74,6 +74,11 @@ class BasicFormBuilder
 		return $this->checkGroup($label, $name, $control);
 	}
 
+	public function inlineCheckbox($label, $name)
+	{
+		return $this->checkbox($label, $name)->inline();
+	}
+
 	protected function checkGroup($label, $name, $control)
 	{
 		$checkGroup = $this->buildCheckGroup($label, $name, $control);
@@ -104,6 +109,11 @@ class BasicFormBuilder
 		return $this->radioGroup($label, $name, $control);
 	}
 
+	public function inlineRadio($label, $name, $value = null)
+	{
+		return $this->radio($label, $name, $value)->inline();
+	}
+
 	protected function radioGroup($label, $name, $control)
 	{
 		$checkGroup = $this->buildCheckGroup($label, $name, $control);
@@ -115,29 +125,6 @@ class BasicFormBuilder
 		$control = $this->builder->textarea($name);
 
 		return $this->formGroup($label, $name, $control);
-	}
-
-	public function inlineCheckbox($label, $name, $checked = false)
-	{
-		$label = $this->builder->label($label)->addClass('checkbox-inline');
-		$control = $this->builder->checkbox($name);
-
-		if ($checked) {
-			$control->check();
-		} else {
-			$control->uncheck();
-		}
-
-		return $label->after($control);
-	}
-
-	public function inlineRadio($label, $name, $value = null)
-	{
-		$value = $value ?: $label;
-		$label = $this->builder->label($label)->addClass('radio-inline');
-		$control = $this->builder->radio($name, $value);
-
-		return $label->after($control);
 	}
 
 	public function date($label, $name, $value = null)

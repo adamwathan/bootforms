@@ -24,7 +24,7 @@ class FormGroup extends Element
 		$html .=  $this->label;
 		$html .=  $this->control;
 		$html .= $this->renderHelpBlock();
-		
+
 		$html .= '</div>';
 
 		return $html;
