@@ -34,8 +34,8 @@ class CheckGroup extends FormGroup
 	{
 		$this->inline = true;
 
-		$class = $this->control()->type() . '-inline'; // Requires base form PR #49 merge.
-		$this->label->removeClass('control-label')->addClass($class); // Requires base form PR #49 merge.
+		$class = $this->control()->getAttribute('type') . '-inline';
+		$this->label->removeClass('control-label')->addClass($class);
 
 		return $this;
 	}
