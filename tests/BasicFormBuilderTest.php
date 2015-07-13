@@ -606,6 +606,33 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+	public function testRenderNumberGroup()
+	{
+		$expected = '<div class="form-group"><label class="control-label" for="age">Age</label><input type="number" name="age" id="age" class="form-control"></div>';
+		$result = $this->form->number('Age', 'age')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderNumberGroupWithValue()
+	{
+		$expected = '<div class="form-group"><label class="control-label" for="age">Email</label><input type="number" name="age" id="age" class="form-control" value="42"></div>';
+		$result = $this->form->number('Age', 'age')->value('42')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testRenderNumberGroupWithError()
+	{
+		$errorStore = Mockery::mock('AdamWathan\Form\ErrorStore\ErrorStoreInterface');
+		$errorStore->shouldReceive('hasError')->andReturn(true);
+		$errorStore->shouldReceive('getError')->andReturn('Age is required.');
+
+		$this->builder->setErrorStore($errorStore);
+
+		$expected = '<div class="form-group has-error"><label class="control-label" for="age">Age</label><input type="number" name="age" id="age" class="form-control"><p class="help-block">Age is required.</p></div>';
+		$result = $this->form->number('Age', 'age')->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	private function getStubObject()
 	{
 		$obj = new stdClass;
