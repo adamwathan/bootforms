@@ -109,6 +109,22 @@ BootForm::text('First Name', 'first_name')->defaultValue('John Doe');
 
 For more information about what's possible, check out the documentation for [my basic Form package.](https://github.com/adamwathan/form)
 
+#### Hiding Labels
+
+You can hide labels by chaining the `hideLabel()` helper off of any element definition.
+
+`BootForm::text('First Name', 'first_name')->hideLabel()`
+
+The label will still be generated in the markup, but hidden using Bootstrap's `.sr-only` class, so you don't reduce the accessibility of your form.
+
+#### Help Blocks
+
+You can add a help block underneath a form element using the `helpBlock()` helper.
+
+`BootForm::text('Password', 'password')->helpBlock('A strong password should be long and hard to guess.')`
+
+> Note: This help block will automatically be overridden by errors if there are validation errors.
+
 ### Reduced Boilerplate
 
 Typical Bootstrap form boilerplate might look something like this:
