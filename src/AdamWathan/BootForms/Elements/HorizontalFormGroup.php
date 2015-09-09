@@ -15,7 +15,7 @@ class HorizontalFormGroup extends FormGroup
 
 	public function render()
 	{
-		$html  = '<div';
+		$html  = '<fieldset';
 		$html .= $this->renderAttributes();
 		$html .= '>';
 		$html .=  $this->label;
@@ -24,7 +24,7 @@ class HorizontalFormGroup extends FormGroup
 		$html .= $this->renderHelpBlock();
 		$html .= '</div>';
 
-		$html .= '</div>';
+		$html .= '</fieldset>';
 
 		return $html;
 	}
