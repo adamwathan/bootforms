@@ -17,14 +17,14 @@ class OffsetFormGroup extends Element
 
 	public function render()
 	{
-		$html  = '<div';
+		$html  = '<fieldset';
 		$html .= $this->renderAttributes();
 		$html .= '>';
 		$html .= '<div class="' . $this->getControlClass() . '">';
 		$html .=  $this->control;
 		$html .= '</div>';
 
-		$html .= '</div>';
+		$html .= '</fieldset>';
 
 		return $html;
 	}
