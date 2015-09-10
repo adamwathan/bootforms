@@ -83,7 +83,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
 		$control = $this->builder->checkbox($name);
 		$checkGroup = $this->checkGroup($label, $name, $control)->addClass('checkbox');
 
-		return new OffsetFormGroup($checkGroup, $this->columnSizes);
+		return new OffsetFormGroup($this->wrap($checkGroup), $this->columnSizes);
 	}
 
 	protected function checkGroup($label, $name, $control)
@@ -109,7 +109,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
 		$control = $this->builder->radio($name, $value);
 		$checkGroup = $this->checkGroup($label, $name, $control)->addClass('radio');
 
-		return new OffsetFormGroup($checkGroup, $this->columnSizes);
+		return new OffsetFormGroup($this->wrap($checkGroup), $this->columnSizes);
 	}
 
 	public function file($label, $name, $value = null)

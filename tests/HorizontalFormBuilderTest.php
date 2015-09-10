@@ -252,6 +252,13 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+	public function testRenderCheckboxWithAdditionalAttributes()
+	{
+		$expected = '<div class="form-group"><div class="col-lg-offset-2 col-lg-10"><div class="checkbox"><label><input type="checkbox" name="terms" value="1" data-foo="bar">Agree to Terms</label></div></div></div>';
+		$result = $this->form->checkbox('Agree to Terms', 'terms')->attribute('data-foo', 'bar')->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	public function testRenderRadio()
 	{
 		$expected = '<div class="form-group"><div class="col-lg-offset-2 col-lg-10"><div class="radio"><label><input type="radio" name="color" value="red">Red</label></div></div></div>';

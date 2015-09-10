@@ -3,23 +3,20 @@
 use AdamWathan\Form\Elements\Element;
 use AdamWathan\Form\Elements\Label;
 
-class OffsetFormGroup extends Element
+class OffsetFormGroup
 {
 	protected $control;
 	protected $columnSizes;
 
-	public function __construct(Element $control, $columnSizes)
+	public function __construct($control, $columnSizes)
 	{
 		$this->control = $control;
 		$this->columnSizes = $columnSizes;
-		$this->addClass('form-group');
 	}
 
 	public function render()
 	{
-		$html  = '<div';
-		$html .= $this->renderAttributes();
-		$html .= '>';
+		$html  = '<div class="form-group">';
 		$html .= '<div class="' . $this->getControlClass() . '">';
 		$html .=  $this->control;
 		$html .= '</div>';
@@ -43,7 +40,11 @@ class OffsetFormGroup extends Element
 			$class .= sprintf('col-%s-offset-%s col-%s-%s ', $breakpoint, $offset, $breakpoint, $sizes[1]);
 		}
 		return trim($class);
+	}
 
+	public function __toString()
+	{
+		return $this->render();
 	}
 
 	public function __call($method, $parameters)
