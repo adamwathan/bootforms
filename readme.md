@@ -75,6 +75,14 @@ BootForms lets you create a label and form control and wrap it all in a form gro
 BootForm::text('Field Label', 'field_name')
 ```
 
+## Model Binding
+```php
+BootForm::open()->action( route('users.update', $user) )->put()
+    //Don´t forget to change to PUT method
+  BootForm::bind($user)
+BootForm::close()
+```
+
 ### Customizing Elements
 
 If you need to customize your form elements in any way (such as adding a default value or placeholder to a text element), simply chain the calls you need to make and they will fall through to the underlying form element.
