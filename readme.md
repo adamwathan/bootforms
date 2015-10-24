@@ -68,23 +68,15 @@ $bootForm = new AdamWathan\BootForms\BootForm($basicBootFormsBuilder, $horizonta
 BootForms lets you create a label and form control and wrap it all in a form group in one call.
 
 ```php
-//  <div class="form-group">
-//    <label for="field_name">Field Label</label>
-//    <input type="text" class="form-control" id="field_name" name="field_name">
-//  </div>
-BootForm::text('Field Label', 'field_name')
-```
-
-## Model Binding
-
-BootForms makes it easy to bind an object to a form to provide default values. Read more about it [here](https://github.com/adamwathan/form#model-binding).
-
-```php
-BootForm::open()->action( route('users.update', $user) )->put()
-
-BootForm::bind($user)
-
-BootForm::close()
+//  <form method="POST">
+//    <div class="form-group">
+//      <label for="field_name">Field Label</label>
+//      <input type="text" class="form-control" id="field_name" name="field_name">
+//    </div>
+//  </form>
+{!! BootForm::open() !!}
+{!! BootForm::text('Field Label', 'field_name') !!}
+{!! BootForm::close() !!}
 ```
 
 ### Customizing Elements
@@ -120,22 +112,6 @@ BootForm::text('First Name', 'first_name')->defaultValue('John Doe');
 ```
 
 For more information about what's possible, check out the documentation for [my basic Form package.](https://github.com/adamwathan/form)
-
-#### Hiding Labels
-
-You can hide labels by chaining the `hideLabel()` helper off of any element definition.
-
-`BootForm::text('First Name', 'first_name')->hideLabel()`
-
-The label will still be generated in the markup, but hidden using Bootstrap's `.sr-only` class, so you don't reduce the accessibility of your form.
-
-#### Help Blocks
-
-You can add a help block underneath a form element using the `helpBlock()` helper.
-
-`BootForm::text('Password', 'password')->helpBlock('A strong password should be long and hard to guess.')`
-
-> Note: This help block will automatically be overridden by errors if there are validation errors.
 
 ### Reduced Boilerplate
 
@@ -224,3 +200,34 @@ $columnSizes = [
   {!! BootForm::submit('Submit') !!}
 {!! BootForm::close() !!}
 ```
+
+### Additional Tips
+
+#### Hiding Labels
+
+You can hide labels by chaining the `hideLabel()` helper off of any element definition.
+
+`BootForm::text('First Name', 'first_name')->hideLabel()`
+
+The label will still be generated in the markup, but hidden using Bootstrap's `.sr-only` class, so you don't reduce the accessibility of your form.
+
+#### Help Blocks
+
+You can add a help block underneath a form element using the `helpBlock()` helper.
+
+`BootForm::text('Password', 'password')->helpBlock('A strong password should be long and hard to guess.')`
+
+> Note: This help block will automatically be overridden by errors if there are validation errors.
+
+#### Model Binding
+
+BootForms makes it easy to bind an object to a form to provide default values. Read more about it [here](https://github.com/adamwathan/form#model-binding).
+
+```php
+BootForm::open()->action( route('users.update', $user) )->put()
+
+BootForm::bind($user)
+
+BootForm::close()
+```
+
