@@ -76,10 +76,14 @@ BootForm::text('Field Label', 'field_name')
 ```
 
 ## Model Binding
+
+BootForms makes it easy to bind an object to a form to provide default values. Read more about it [here](https://github.com/adamwathan/form#model-binding).
+
 ```php
 BootForm::open()->action( route('users.update', $user) )->put()
-    //Don´t forget to change to PUT method
-  BootForm::bind($user)
+
+BootForm::bind($user)
+
 BootForm::close()
 ```
 
