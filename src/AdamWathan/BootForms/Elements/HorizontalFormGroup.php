@@ -29,12 +29,6 @@ class HorizontalFormGroup extends FormGroup
 		return $html;
 	}
 
-	public function setControlWidth($width)
-	{
-		$this->controlWidth = $width;
-		return $this;
-	}
-
 	protected function getControlClass()
 	{
 		$class = '';
