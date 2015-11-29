@@ -27,6 +27,24 @@ class GroupWrapper
 		return $this->render();
 	}
 
+	public function addGroupClass($class)
+	{
+		$this->formGroup->addClass($class);
+		return $this;
+	}
+
+	public function removeGroupClass($class)
+	{
+		$this->formGroup->removeClass($class);
+		return $this;
+	}
+
+	public function groupData($attribute, $value)
+	{
+		$this->formGroup->data($attribute, $value);
+		return $this;
+	}
+
 	public function labelClass($class)
 	{
 		$this->formGroup->label()->addClass($class);

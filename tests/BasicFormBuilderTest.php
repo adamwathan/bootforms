@@ -521,6 +521,27 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+	public function testCanAddGroupClass()
+	{
+		$expected = '<div class="form-group test-class"><label class="control-label" for="email">Email</label><input type="text" name="email" id="email" class="form-control"></div>';
+		$result = $this->form->text('Email', 'email')->addGroupClass('test-class')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testCanRemoveGroupClass()
+	{
+		$expected = '<div><label class="control-label" for="email">Email</label><input type="text" name="email" id="email" class="form-control"></div>';
+		$result = $this->form->text('Email', 'email')->removeGroupClass('form-group')->render();
+		$this->assertEquals($expected, $result);
+	}
+
+	public function testCanSetGroupData()
+	{
+		$expected = '<div class="form-group" data-test="1"><label class="control-label" for="email">Email</label><input type="text" name="email" id="email" class="form-control"></div>';
+		$result = $this->form->text('Email', 'email')->groupData('test', 1)->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	public function testRenderInputGroupWithBeforeAddon()
 	{
 		$expected = '<div class="form-group"><label class="control-label" for="username">Username</label><div class="input-group"><span class="input-group-addon">@</span><input type="text" name="username" id="username" class="form-control"></div></div>';
