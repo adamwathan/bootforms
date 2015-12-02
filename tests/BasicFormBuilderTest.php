@@ -606,6 +606,17 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $result);
 	}
 
+	public function testModifyingDifferentElementsOfAFormGroup()
+	{
+		$expected = '<div class="form-group foo" data-foo="bar"><label class="control-label bar" for="email" data-bar="baz">Email</label><input type="text" name="email" id="email" class="form-control baz" data-baz="foo"></div>';
+		$result = $this->form->text('Email', 'email')
+			->group()->addClass('foo')->data('foo', 'bar')
+			->label()->addClass('bar')->data('bar', 'baz')
+			->control()->addClass('baz')->data('baz', 'foo')
+			->render();
+		$this->assertEquals($expected, $result);
+	}
+
 	private function getStubObject()
 	{
 		$obj = new stdClass;

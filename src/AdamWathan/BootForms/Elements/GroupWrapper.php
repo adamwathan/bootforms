@@ -5,10 +5,12 @@ use AdamWathan\Form\Elements\Label;
 class GroupWrapper
 {
 	protected $formGroup;
+	protected $target;
 
 	public function __construct($formGroup)
 	{
 		$this->formGroup = $formGroup;
+		$this->target = $formGroup->control();
 	}
 
 	public function render()
@@ -45,9 +47,27 @@ class GroupWrapper
 		return $this;
 	}
 
+	public function group()
+	{
+		$this->target = $this->formGroup;
+		return $this;
+	}
+
+	public function label()
+	{
+		$this->target = $this->formGroup->label();
+		return $this;
+	}
+
+	public function control()
+	{
+		$this->target = $this->formGroup->control();
+		return $this;
+	}
+
 	public function __call($method, $parameters)
 	{
-		call_user_func_array(array($this->formGroup->control(), $method), $parameters);
+		call_user_func_array([$this->target, $method], $parameters);
 		return $this;
 	}
 }
