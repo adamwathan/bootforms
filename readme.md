@@ -6,6 +6,16 @@ BootForms
 
 BootForms builds on top of my more general [Form](https://github.com/adamwathan/form) package by adding another layer of abstraction to rapidly generate markup for standard Bootstrap 3 forms. Probably not perfect for your super custom branded ready-for-release apps, but a *huge* time saver when you are still in the prototyping stage!
 
+- [Installation](#installing-with-composer)
+- [Using BootForms](#using-bootforms)
+    - [Basic Usage](#basic-usage)
+    - [Customizing Elements](#customizing-elements)
+    - [Reduced Boilerplate](#reduced-boilerplate)
+    - [Automatic Validation State](#automatic-validation-state)
+    - [Horizontal Forms](#horizontal-forms)
+    - [Additional Tips](#additional-tips)
+- [Related Resources](#related-resources)
+
 ## Installing with Composer
 
 You can install this package via Composer by running this command in your terminal in the root of your project:
@@ -231,3 +241,6 @@ BootForm::bind($user)
 BootForm::close()
 ```
 
+## Related Resources
+
+- [Laravel Translatable BootForms](#https://github.com/Propaganistas/Laravel-Translatable-Bootforms), integrates BootForms with Dimsav's [Laravel Translatable](https://github.com/dimsav/laravel-translatable) package
