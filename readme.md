@@ -243,4 +243,4 @@ BootForm::close()
 
 ## Related Resources
 
-- [Laravel Translatable BootForms](#https://github.com/Propaganistas/Laravel-Translatable-Bootforms), integrates BootForms with Dimsav's [Laravel Translatable](https://github.com/dimsav/laravel-translatable) package
+- [Laravel Translatable BootForms](https://github.com/Propaganistas/Laravel-Translatable-Bootforms), integrates BootForms with Dimsav's [Laravel Translatable](https://github.com/dimsav/laravel-translatable) package
