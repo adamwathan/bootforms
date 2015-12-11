@@ -43,6 +43,13 @@ class BasicFormBuilder
 		return $this->formGroup($label, $name, $control);
 	}
 
+	public function number($label, $name, $value = null)
+	{
+		$control = $this->builder->number($name)->value($value);
+
+		return $this->formGroup($label, $name, $control);
+	}
+
 	public function password($label, $name)
 	{
 		$control = $this->builder->password($name);
