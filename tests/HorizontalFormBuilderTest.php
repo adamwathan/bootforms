@@ -205,6 +205,14 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testRenderButtonWithMultipleBreakpointSizesThatDontFillFullWidth()
+    {
+        $this->form->setColumnSizes(['xs' => [5, 7], 'lg' => [3, 6]]);
+        $expected = '<div class="form-group"><div class="col-xs-offset-5 col-xs-7 col-lg-offset-3 col-lg-6"><button type="button" class="btn btn-default">Click Me</button></div></div>';
+        $result = $this->form->button('Click Me')->render();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testRenderSubmit()
     {
         $expected = '<div class="form-group"><div class="col-lg-offset-2 col-lg-10"><button type="submit" class="btn btn-default">Submit</button></div></div>';
