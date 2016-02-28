@@ -38,7 +38,11 @@ class BasicFormBuilder
 
     public function text($label, $name, $value = null)
     {
-        $control = $this->builder->text($name)->value($value);
+        $control = $this->builder->text($name);
+
+        if ($value !== null) {
+            $control->value($value);
+        }
 
         return $this->formGroup($label, $name, $control);
     }
@@ -129,23 +133,34 @@ class BasicFormBuilder
 
     public function date($label, $name, $value = null)
     {
-        $control = $this->builder->date($name)->value($value);
+        $control = $this->builder->date($name);
+
+        if ($value !== null) {
+            $control->value($value);
+        }
 
         return $this->formGroup($label, $name, $control);
     }
 
     public function email($label, $name, $value = null)
     {
-        $control = $this->builder->email($name)->value($value);
+        $control = $this->builder->email($name);
+
+        if ($value !== null) {
+            $control->value($value);
+        }
 
         return $this->formGroup($label, $name, $control);
     }
 
     public function file($label, $name, $value = null)
     {
-        $control = $this->builder->file($name)->value($value);
+        $control = $this->builder->file($name)->id($name);
         $label = $this->builder->label($label, $name)->addClass('control-label')->forId($name);
-        $control->id($name);
+
+        if ($value !== null) {
+            $control->value($value);
+        }
 
         $formGroup = new FormGroup($label, $control);
 
@@ -160,7 +175,8 @@ class BasicFormBuilder
     public function inputGroup($label, $name, $value = null)
     {
         $control = new InputGroup($name);
-        if (!is_null($value) || !is_null($value = $this->getValueFor($name))) {
+
+        if ($value !== null || ($value = $this->getValueFor($name)) !== null) {
             $control->value($value);
         }
 
