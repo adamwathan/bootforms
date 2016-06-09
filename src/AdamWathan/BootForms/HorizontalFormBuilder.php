@@ -8,7 +8,7 @@ use AdamWathan\Form\FormBuilder;
 
 class HorizontalFormBuilder extends BasicFormBuilder
 {
-    private $columnSizes;
+    protected $columnSizes;
 
     protected $builder;
 
