@@ -2,9 +2,9 @@
 
 class BootForm
 {
-    private $builder;
-    private $basicFormBuilder;
-    private $horizontalFormBuilder;
+    protected $builder;
+    protected $basicFormBuilder;
+    protected $horizontalFormBuilder;
 
     public function __construct(BasicFormBuilder $basicFormBuilder, HorizontalFormBuilder $horizontalFormBuilder)
     {
