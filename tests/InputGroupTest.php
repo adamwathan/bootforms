@@ -42,12 +42,6 @@ class InputGroupTest extends PHPUnit_Framework_TestCase
         $expected = '<div class="input-group"><input type="text" name="test" value="abc"></div>';
         $result = $input->render();
         $this->assertEquals($expected, $result);
-
-        $input = new InputGroup('test');
-        $input = $input->value(null);
-        $expected = '<div class="input-group"><input type="text" name="test"></div>';
-        $result = $input->render();
-        $this->assertEquals($expected, $result);
     }
 
     public function testDefaultValue()

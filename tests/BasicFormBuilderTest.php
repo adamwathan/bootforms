@@ -254,14 +254,14 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 
         $this->builder->setOldInputProvider($oldInput);
 
-        $expected = '<div class="checkbox"><label class="control-label"><input type="checkbox" name="terms" value="1" checked="checked">Agree to Terms</label></div>';
+        $expected = '<div class="checkbox"><label class="control-label"><input type="checkbox" name="terms" value="1" checked>Agree to Terms</label></div>';
         $result = $this->form->checkbox('Agree to Terms', 'terms')->render();
         $this->assertEquals($expected, $result);
     }
 
     public function testRenderCheckboxChecked()
     {
-        $expected = '<div class="checkbox"><label class="control-label"><input type="checkbox" name="terms" value="1" checked="checked">Agree to Terms</label></div>';
+        $expected = '<div class="checkbox"><label class="control-label"><input type="checkbox" name="terms" value="1" checked>Agree to Terms</label></div>';
         $result = $this->form->checkbox('Agree to Terms', 'terms')->check()->render();
         $this->assertEquals($expected, $result);
     }
@@ -293,7 +293,7 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 
         $this->builder->setOldInputProvider($oldInput);
 
-        $expected = '<div class="radio"><label class="control-label"><input type="radio" name="color" value="red" checked="checked">Red</label></div>';
+        $expected = '<div class="radio"><label class="control-label"><input type="radio" name="color" value="red" checked>Red</label></div>';
         $result = $this->form->radio('Red', 'color', 'red')->render();
         $this->assertEquals($expected, $result);
     }
@@ -352,7 +352,7 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 
     public function testRenderInlineCheckboxFallbackWithChaining()
     {
-        $expected = '<label class="checkbox-inline"><input type="checkbox" name="DJ" value="meal" chain="link" checked="checked">Checkit!</label>';
+        $expected = '<label class="checkbox-inline"><input type="checkbox" name="DJ" value="meal" chain="link" checked>Checkit!</label>';
         $result = $this->form->inlineCheckbox('Checkit!', 'DJ')->value('meal')->chain('link')->check()->render();
         $this->assertEquals($expected, $result);
     }
@@ -366,7 +366,7 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 
     public function testRenderInlineCheckboxModifierWithChaining()
     {
-        $expected = '<label class="checkbox-inline"><input type="checkbox" name="DJ" value="meal" chain="link" checked="checked">Checkit!</label>';
+        $expected = '<label class="checkbox-inline"><input type="checkbox" name="DJ" value="meal" chain="link" checked>Checkit!</label>';
         $result = $this->form->checkbox('Checkit!', 'DJ')->inline()->value('meal')->chain('link')->check()->render();
         $this->assertEquals($expected, $result);
     }
@@ -380,7 +380,7 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 
     public function testRenderInlineRadioFallbackWithChaining()
     {
-        $expected = '<label class="radio-inline"><input type="radio" name="colour" value="Canada Red" chain="link" checked="checked">Canada Red</label>';
+        $expected = '<label class="radio-inline"><input type="radio" name="colour" value="Canada Red" chain="link" checked>Canada Red</label>';
         $result = $this->form->inlineRadio('Canada Red', 'colour')->chain('link')->check()->render();
         $this->assertEquals($expected, $result);
     }
@@ -394,14 +394,14 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
 
     public function testRenderInlineRadioModifierWithChaining()
     {
-        $expected = '<label class="radio-inline"><input type="radio" name="colour" value="Canada Red" chain="link" checked="checked">Canada Red</label>';
+        $expected = '<label class="radio-inline"><input type="radio" name="colour" value="Canada Red" chain="link" checked>Canada Red</label>';
         $result = $this->form->radio('Canada Red', 'colour')->inline()->chain('link')->check()->render();
         $this->assertEquals($expected, $result);
     }
 
     public function testRenderInlineModifierOnUnsupportedElement()
     {
-        $expected = '<div class="form-group"><label class="control-label" for="name">Name</label><input type="text" name="name" id="name" class="form-control" inline="inline"></div>';
+        $expected = '<div class="form-group"><label class="control-label" for="name">Name</label><input type="text" name="name" id="name" class="form-control" inline></div>';
         $result = $this->form->text('Name', 'name')->inline()->render();
         $this->assertEquals($expected, $result);
     }

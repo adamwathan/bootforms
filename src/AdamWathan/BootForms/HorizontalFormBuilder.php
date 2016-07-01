@@ -114,13 +114,15 @@ class HorizontalFormBuilder extends BasicFormBuilder
 
     public function file($label, $name, $value = null)
     {
-        $control = $this->builder->file($name)->value($value);
+        $control = $this->builder->file($name)->id($name);
         $label = $this->builder->label($label, $name)
             ->addClass($this->getLabelClass())
             ->addClass('control-label')
             ->forId($name);
 
-        $control->id($name);
+        if ($value !== null) {
+            $control->value($value);
+        }
 
         $formGroup = new HorizontalFormGroup($label, $control, $this->getControlSizes());
 

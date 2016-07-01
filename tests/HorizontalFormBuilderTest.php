@@ -248,14 +248,14 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
 
         $this->builder->setOldInputProvider($oldInput);
 
-        $expected = '<div class="form-group"><div class="col-lg-offset-2 col-lg-10"><div class="checkbox"><label><input type="checkbox" name="terms" value="1" checked="checked">Agree to Terms</label></div></div></div>';
+        $expected = '<div class="form-group"><div class="col-lg-offset-2 col-lg-10"><div class="checkbox"><label><input type="checkbox" name="terms" value="1" checked>Agree to Terms</label></div></div></div>';
         $result = $this->form->checkbox('Agree to Terms', 'terms')->render();
         $this->assertEquals($expected, $result);
     }
 
     public function testRenderCheckboxChecked()
     {
-        $expected = '<div class="form-group"><div class="col-lg-offset-2 col-lg-10"><div class="checkbox"><label><input type="checkbox" name="terms" value="1" checked="checked">Agree to Terms</label></div></div></div>';
+        $expected = '<div class="form-group"><div class="col-lg-offset-2 col-lg-10"><div class="checkbox"><label><input type="checkbox" name="terms" value="1" checked>Agree to Terms</label></div></div></div>';
         $result = $this->form->checkbox('Agree to Terms', 'terms')->check()->render();
         $this->assertEquals($expected, $result);
     }
@@ -294,7 +294,7 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
 
         $this->builder->setOldInputProvider($oldInput);
 
-        $expected = '<div class="form-group"><div class="col-lg-offset-2 col-lg-10"><div class="radio"><label><input type="radio" name="color" value="red" checked="checked">Red</label></div></div></div>';
+        $expected = '<div class="form-group"><div class="col-lg-offset-2 col-lg-10"><div class="radio"><label><input type="radio" name="color" value="red" checked>Red</label></div></div></div>';
         $result = $this->form->radio('Red', 'color', 'red')->render();
         $this->assertEquals($expected, $result);
     }
