@@ -9,12 +9,12 @@ use AdamWathan\Form\Elements\Label;
  */
 class HorizontalFormGroup extends FormGroup
 {
-	/**
+    /**
      * @var array
      */
     protected $controlSizes;
 
-	/**
+    /**
      * HorizontalFormGroup constructor.
      * @param Label $label
      * @param Element $control
@@ -26,7 +26,7 @@ class HorizontalFormGroup extends FormGroup
         $this->controlSizes = $controlSizes;
     }
 
-	/**
+    /**
      * @return string
      */
     public function render()
@@ -45,7 +45,7 @@ class HorizontalFormGroup extends FormGroup
         return $html;
     }
 
-	/**
+    /**
      * @return string
      */
     protected function getControlClass()
@@ -57,7 +57,7 @@ class HorizontalFormGroup extends FormGroup
         return trim($class);
     }
 
-	/**
+    /**
      * @param $method
      * @param $parameters
      * @return $this

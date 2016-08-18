@@ -97,7 +97,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
         return trim($class);
     }
 
-	/**
+    /**
      * @param $value
      * @param null $name
      * @param string $type
@@ -109,7 +109,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
         return new OffsetFormGroup($button, $this->columnSizes);
     }
 
-	/**
+    /**
      * @param string $value
      * @param string $type
      * @return OffsetFormGroup
@@ -120,7 +120,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
         return new OffsetFormGroup($button, $this->columnSizes);
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @return OffsetFormGroup
@@ -133,7 +133,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
         return new OffsetFormGroup($this->wrap($checkGroup), $this->columnSizes);
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @param $control
@@ -153,7 +153,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
         return $checkGroup;
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @param null $value
@@ -171,7 +171,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
         return new OffsetFormGroup($this->wrap($checkGroup), $this->columnSizes);
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @param null $value
@@ -197,7 +197,7 @@ class HorizontalFormBuilder extends BasicFormBuilder
         return $formGroup;
     }
 
-	/**
+    /**
      * @param $method
      * @param $parameters
      * @return mixed

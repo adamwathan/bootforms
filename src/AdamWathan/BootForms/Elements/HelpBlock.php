@@ -8,12 +8,12 @@ use AdamWathan\Form\Elements\Element;
  */
 class HelpBlock extends Element
 {
-	/**
+    /**
      * @var string
      */
     private $message;
 
-	/**
+    /**
      * HelpBlock constructor.
      * @param $message
      */
@@ -23,7 +23,7 @@ class HelpBlock extends Element
         $this->addClass('help-block');
     }
 
-	/**
+    /**
      * @return string
      */
     public function render()

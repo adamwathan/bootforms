@@ -13,12 +13,12 @@ use AdamWathan\Form\FormBuilder;
  */
 class BasicFormBuilder
 {
-	/**
+    /**
      * @var FormBuilder
      */
     protected $builder;
 
-	/**
+    /**
      * BasicFormBuilder constructor.
      * @param FormBuilder $builder
      */
@@ -27,7 +27,7 @@ class BasicFormBuilder
         $this->builder = $builder;
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @param $control
@@ -48,7 +48,7 @@ class BasicFormBuilder
         return $this->wrap($formGroup);
     }
 
-	/**
+    /**
      * @param $group
      * @return GroupWrapper
      */
@@ -57,7 +57,7 @@ class BasicFormBuilder
         return new GroupWrapper($group);
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @param null $value
@@ -70,7 +70,7 @@ class BasicFormBuilder
         return $this->formGroup($label, $name, $control);
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @return GroupWrapper
@@ -82,7 +82,7 @@ class BasicFormBuilder
         return $this->formGroup($label, $name, $control);
     }
 
-	/**
+    /**
      * @param $value
      * @param null $name
      * @param string $type
@@ -93,7 +93,7 @@ class BasicFormBuilder
         return $this->builder->button($value, $name)->addClass('btn')->addClass($type);
     }
 
-	/**
+    /**
      * @param string $value
      * @param string $type
      * @return \AdamWathan\Form\Elements\Button
@@ -116,7 +116,7 @@ class BasicFormBuilder
         return $this->formGroup($label, $name, $control);
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @return GroupWrapper
@@ -128,7 +128,7 @@ class BasicFormBuilder
         return $this->checkGroup($label, $name, $control);
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @return $this
@@ -138,7 +138,7 @@ class BasicFormBuilder
         return $this->checkbox($label, $name)->inline();
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @param $control
@@ -150,7 +150,7 @@ class BasicFormBuilder
         return $this->wrap($checkGroup->addClass('checkbox'));
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @param $control
@@ -169,7 +169,7 @@ class BasicFormBuilder
         return $checkGroup;
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @param null $value
@@ -186,7 +186,7 @@ class BasicFormBuilder
         return $this->radioGroup($label, $name, $control);
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @param null $value
@@ -197,7 +197,7 @@ class BasicFormBuilder
         return $this->radio($label, $name, $value)->inline();
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @param $control
@@ -209,7 +209,7 @@ class BasicFormBuilder
         return $this->wrap($checkGroup->addClass('radio'));
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @return GroupWrapper
@@ -221,7 +221,7 @@ class BasicFormBuilder
         return $this->formGroup($label, $name, $control);
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @param null $value
@@ -234,7 +234,7 @@ class BasicFormBuilder
         return $this->formGroup($label, $name, $control);
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @param null $value
@@ -247,7 +247,7 @@ class BasicFormBuilder
         return $this->formGroup($label, $name, $control);
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @param null $value
@@ -269,7 +269,7 @@ class BasicFormBuilder
         return $this->wrap($formGroup);
     }
 
-	/**
+    /**
      * @param $label
      * @param $name
      * @param null $value
@@ -285,7 +285,7 @@ class BasicFormBuilder
         return $this->formGroup($label, $name, $control);
     }
 
-	/**
+    /**
      * @param $method
      * @param $parameters
      * @return mixed

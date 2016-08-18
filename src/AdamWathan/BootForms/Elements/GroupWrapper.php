@@ -8,12 +8,12 @@ use AdamWathan\Form\Elements\Label;
  */
 class GroupWrapper
 {
-	/**
+    /**
      * @var FormGroup
      */
     protected $formGroup;
 
-	/**
+    /**
      * @var
      */
     protected $target;
@@ -28,7 +28,7 @@ class GroupWrapper
         $this->target = $formGroup->control();
     }
 
-	/**
+    /**
      * @return string
      */
     public function render()
@@ -36,7 +36,7 @@ class GroupWrapper
         return $this->formGroup->render();
     }
 
-	/**
+    /**
      * @param $text
      * @return $this
      */
@@ -46,7 +46,7 @@ class GroupWrapper
         return $this;
     }
 
-	/**
+    /**
      * @return string
      */
     public function __toString()
@@ -54,7 +54,7 @@ class GroupWrapper
         return $this->render();
     }
 
-	/**
+    /**
      * @param string $class
      * @return $this
      */
@@ -64,7 +64,7 @@ class GroupWrapper
         return $this;
     }
 
-	/**
+    /**
      * @param string $class
      * @return $this
      */
@@ -74,7 +74,7 @@ class GroupWrapper
         return $this;
     }
 
-	/**
+    /**
      * @param string $attribute
      * @param string $value
      * @return $this
@@ -85,7 +85,7 @@ class GroupWrapper
         return $this;
     }
 
-	/**
+    /**
      * @param string $class
      * @return $this
      */
@@ -95,7 +95,7 @@ class GroupWrapper
         return $this;
     }
 
-	/**
+    /**
      * @return $this
      */
     public function hideLabel()
@@ -104,7 +104,7 @@ class GroupWrapper
         return $this;
     }
 
-	/**
+    /**
      * @return $this
      */
     public function inline()
@@ -113,7 +113,7 @@ class GroupWrapper
         return $this;
     }
 
-	/**
+    /**
      * @return $this
      */
     public function group()
@@ -122,7 +122,7 @@ class GroupWrapper
         return $this;
     }
 
-	/**
+    /**
      * @return $this
      */
     public function label()
@@ -131,7 +131,7 @@ class GroupWrapper
         return $this;
     }
 
-	/**
+    /**
      * @return $this
      */
     public function control()
@@ -140,7 +140,7 @@ class GroupWrapper
         return $this;
     }
 
-	/**
+    /**
      * @param $method
      * @param $parameters
      * @return $this

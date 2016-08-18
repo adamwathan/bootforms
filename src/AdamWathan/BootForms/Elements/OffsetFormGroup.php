@@ -6,16 +6,16 @@
  */
 class OffsetFormGroup
 {
-	/**
+    /**
      * @var string
      */
     protected $control;
-	/**
+    /**
      * @var array
      */
     protected $columnSizes;
 
-	/**
+    /**
      * OffsetFormGroup constructor.
      * @param string $control
      * @param array $columnSizes
@@ -26,7 +26,7 @@ class OffsetFormGroup
         $this->columnSizes = $columnSizes;
     }
 
-	/**
+    /**
      * @return string
      */
     public function render()
@@ -41,7 +41,7 @@ class OffsetFormGroup
         return $html;
     }
 
-	/**
+    /**
      * @param array $columnSizes
      * @return $this
      */
@@ -51,7 +51,7 @@ class OffsetFormGroup
         return $this;
     }
 
-	/**
+    /**
      * @return string
      */
     protected function getControlClass()
@@ -63,7 +63,7 @@ class OffsetFormGroup
         return trim($class);
     }
 
-	/**
+    /**
      * @return string
      */
     public function __toString()
@@ -71,7 +71,7 @@ class OffsetFormGroup
         return $this->render();
     }
 
-	/**
+    /**
      * @param $method
      * @param $parameters
      * @return $this

@@ -29,22 +29,22 @@
  */
 class BootForm
 {
-	/**
+    /**
 	 * @var BasicFormBuilder
 	 */
     protected $builder;
 
-	/**
+    /**
 	 * @var BasicFormBuilder
 	 */
 	protected $basicFormBuilder;
 
-	/**
+    /**
 	 * @var HorizontalFormBuilder
 	 */
 	protected $horizontalFormBuilder;
 
-	/**
+    /**
 	 * BootForm constructor.
 	 * @param BasicFormBuilder $basicFormBuilder
 	 * @param HorizontalFormBuilder $horizontalFormBuilder
@@ -55,7 +55,7 @@ class BootForm
         $this->horizontalFormBuilder = $horizontalFormBuilder;
     }
 
-	/**
+    /**
 	 * @return \AdamWathan\Form\Elements\FormOpen
 	 */
     public function open()
@@ -64,7 +64,7 @@ class BootForm
         return $this->builder->open();
     }
 
-	/**
+    /**
 	 * @param $columnSizes
 	 * @return \AdamWathan\Form\Elements\FormOpen
 	 */

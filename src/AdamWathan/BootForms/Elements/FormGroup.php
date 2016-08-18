@@ -9,20 +9,20 @@ use AdamWathan\Form\Elements\Label;
  */
 class FormGroup extends Element
 {
-	/**
+    /**
      * @var Label
      */
     protected $label;
-	/**
+    /**
      * @var Element
      */
     protected $control;
-	/**
+    /**
      * @var
      */
     protected $helpBlock;
 
-	/**
+    /**
      * FormGroup constructor.
      * @param Label $label
      * @param Element $control
@@ -34,7 +34,7 @@ class FormGroup extends Element
         $this->addClass('form-group');
     }
 
-	/**
+    /**
      * @return string
      */
     public function render()
@@ -51,7 +51,7 @@ class FormGroup extends Element
         return $html;
     }
 
-	/**
+    /**
      * @param $text
      * @return $this|void
      */
@@ -64,7 +64,7 @@ class FormGroup extends Element
         return $this;
     }
 
-	/**
+    /**
      * @return string
      */
     protected function renderHelpBlock()
@@ -76,7 +76,7 @@ class FormGroup extends Element
         return '';
     }
 
-	/**
+    /**
      * @return Element
      */
     public function control()
@@ -84,7 +84,7 @@ class FormGroup extends Element
         return $this->control;
     }
 
-	/**
+    /**
      * @return Label
      */
     public function label()
@@ -92,7 +92,7 @@ class FormGroup extends Element
         return $this->label;
     }
 
-	/**
+    /**
      * @param $method
      * @param $parameters
      * @return $this

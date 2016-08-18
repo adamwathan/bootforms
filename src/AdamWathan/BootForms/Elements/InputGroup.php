@@ -8,17 +8,17 @@ use AdamWathan\Form\Elements\Text;
  */
 class InputGroup extends Text
 {
-	/**
+    /**
      * @var array
      */
     protected $beforeAddon = [];
 
-	/**
+    /**
      * @var array
      */
     protected $afterAddon = [];
 
-	/**
+    /**
      * @param $addon
      * @return $this
      */
@@ -29,7 +29,7 @@ class InputGroup extends Text
         return $this;
     }
 
-	/**
+    /**
      * @param $addon
      * @return $this
      */
@@ -40,7 +40,7 @@ class InputGroup extends Text
         return $this;
     }
 
-	/**
+    /**
      * @param $type
      * @return $this
      */
@@ -50,7 +50,7 @@ class InputGroup extends Text
         return $this;
     }
 
-	/**
+    /**
      * @param array $addons
      * @return string
      */
@@ -67,7 +67,7 @@ class InputGroup extends Text
         return $html;
     }
 
-	/**
+    /**
      * @return string
      */
     public function render()
