@@ -22,6 +22,17 @@ class FormGroupTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $result);
     }
 
+   public function testCanGetHtmlFromBasicFormGroup()
+    {
+        $label = $this->builder->label('Email');
+        $text = $this->builder->text('email');
+        $formGroup = new FormGroup($label, $text);
+
+        $expected = $formGroup->render();;
+        $result = $formGroup->toHtml();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testCanRenderWithPlaceholder()
     {
         $label = $this->builder->label('Email');

@@ -1,8 +1,9 @@
 <?php namespace AdamWathan\BootForms\Elements;
 
 use AdamWathan\Form\Elements\Label;
+use Illuminate\Contracts\Support\Htmlable;
 
-class GroupWrapper
+class GroupWrapper implements Htmlable
 {
     protected $formGroup;
     protected $target;
@@ -87,5 +88,14 @@ class GroupWrapper
     {
         call_user_func_array([$this->target, $method], $parameters);
         return $this;
+    }
+
+    /**
+     * Get content as a string of HTML.
+     *
+     * @return string
+     */
+    public function toHtml() {
+        return $this->render();
     }
 }
