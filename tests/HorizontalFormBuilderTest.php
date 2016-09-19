@@ -390,6 +390,13 @@ class HorizontalFormBuilderTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testRenderDateTimeLocalGroup()
+    {
+        $expected = '<div class="form-group"><label class="col-lg-2 control-label" for="dob">Date & time of birth</label><div class="col-lg-10"><input type="datetime-local" name="dob" id="dob" class="form-control"></div></div>';
+        $result = $this->form->dateTimeLocal('Date & time of birth', 'dob')->render();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testRenderFileGroup()
     {
         $expected = '<div class="form-group"><label class="col-lg-2 control-label" for="file">File</label><div class="col-lg-10"><input type="file" name="file" id="file"></div></div>';
