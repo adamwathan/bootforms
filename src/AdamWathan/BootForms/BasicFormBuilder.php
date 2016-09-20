@@ -134,6 +134,13 @@ class BasicFormBuilder
         return $this->formGroup($label, $name, $control);
     }
 
+    public function dateTimeLocal($label, $name, $value = null)
+    {
+        $control = $this->builder->dateTimeLocal($name)->value($value);
+
+        return $this->formGroup($label, $name, $control);
+    }
+
     public function email($label, $name, $value = null)
     {
         $control = $this->builder->email($name)->value($value);

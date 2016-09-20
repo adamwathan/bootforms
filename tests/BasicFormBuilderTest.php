@@ -463,6 +463,13 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testRenderDateTimeLocalGroup()
+    {
+        $expected = '<div class="form-group"><label class="control-label" for="dob">Date & time of birth</label><input type="datetime-local" name="dob" id="dob" class="form-control"></div>';
+        $result = $this->form->dateTimeLocal('Date & time of birth', 'dob')->render();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testRenderEmailGroup()
     {
         $expected = '<div class="form-group"><label class="control-label" for="email">Email</label><input type="email" name="email" id="email" class="form-control"></div>';
