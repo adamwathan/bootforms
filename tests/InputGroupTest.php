@@ -68,19 +68,29 @@ class InputGroupTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testCustomCssAddons()
+    public function testCustomClassAddons()
     {
         $input = new InputGroup('example1');
-        $input->afterAddon('@domain.com')->addAddonCss('newCss');
+        $input->afterAddon('@domain.com')->addAddonClass('newCss');
 
         $expected = '<div class="input-group"><input type="text" name="example1"><span class="input-group-addon newCss">@domain.com</span></div>';
         $result = $input->render();
         $this->assertEquals($expected, $result);
     
         $input = new InputGroup('example2');
-        $input->afterAddon('@domain.com')->addAddonCss('newCss1')->addAddonCss('newCss2');
+        $input->afterAddon('@domain.com')->addAddonClass('newCss1')->addAddonClass('newCss2');
 
         $expected = '<div class="input-group"><input type="text" name="example2"><span class="input-group-addon newCss1 newCss2">@domain.com</span></div>';
+        $result = $input->render();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testCustomIdAddons()
+    {
+        $input = new InputGroup('example1');
+        $input->afterAddon('@domain.com')->addAddonId('myID');
+
+        $expected = '<div class="input-group"><input type="text" name="example1"><span id="myID" class="input-group-addon">@domain.com</span></div>';
         $result = $input->render();
         $this->assertEquals($expected, $result);
     }
