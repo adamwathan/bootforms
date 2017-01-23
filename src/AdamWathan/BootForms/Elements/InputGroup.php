@@ -48,7 +48,7 @@ class InputGroup extends Text
         $html = '';
 
         foreach ($addons as $addon) {
-            $html .= sprintf('<span %s class="input-group-addon %s">%s</span>', $this->renderAddonsId(), $this->classAddon, $addon);
+            $html .= sprintf('<span %sclass="input-group-addon %s">%s</span>', $this->renderAddonsId(), $this->classAddon, $addon);
         }
 
         return $html;
@@ -57,7 +57,7 @@ class InputGroup extends Text
     protected function renderAddonsId()
     {
         if($this->addonID) {
-            return sprintf('id = "%s"', $this->addonID);
+            return sprintf(' ' . 'id = "%s"', $this->addonID);
         }
     }
 
