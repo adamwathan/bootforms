@@ -6,7 +6,7 @@ class InputGroup extends Text
 {
     protected $beforeAddon = [];
     protected $afterAddon = [];
-    protected $cssAddons = [];
+    protected $addonClass = [];
 
     public function beforeAddon($addon)
     {
@@ -33,7 +33,7 @@ class InputGroup extends Text
         $html = '';
 
         foreach ($addons as $addon) {
-            $html .= sprintf('<span class="input-group-addon%s">%s</span>', $this->renderAddonCss(), $addon);
+            $html .= sprintf('<span class="input-group-addon%s">%s</span>', $this->renderAddonClass(), $addon);
         }
 
         return $html;
@@ -41,16 +41,16 @@ class InputGroup extends Text
 
     public function addAddonCss($css)
     {
-        $this->cssAddons[] = $css;
+        $this->addonClass[] = $css;
 
         return $this;
     }
 
-    protected function renderAddonCss()
+    protected function renderAddonClass()
     {
         $class = '';
 
-        foreach ($this->cssAddons as $css) {
+        foreach ($this->addonClass as $css) {
             $class .= ' ' . $css;
         }
 
