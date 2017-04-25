@@ -528,6 +528,17 @@ class BasicFormBuilderTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testRequiredLabels()
+    {
+        $expected = '<div class="form-group"><label class="control-label control-label-required" for="email">Email</label><input type="text" name="email" id="email" class="form-control" required="required"></div>';
+        $result = $this->form->text('Email', 'email')->required()->render();
+        $this->assertEquals($expected, $result);
+
+        $expected = '<div class="form-group"><label class="control-label" for="email">Email</label><input type="text" name="email" id="email" class="form-control"></div>';
+        $result = $this->form->text('Email', 'email')->required(false)->render();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testCanAddGroupClass()
     {
         $expected = '<div class="form-group test-class"><label class="control-label" for="email">Email</label><input type="text" name="email" id="email" class="form-control"></div>';
