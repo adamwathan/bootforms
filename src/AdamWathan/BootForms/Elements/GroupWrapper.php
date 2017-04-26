@@ -58,6 +58,16 @@ class GroupWrapper
         $this->labelClass('sr-only');
         return $this;
     }
+    
+    public function required($conditional = true)
+    {
+        if ($conditional) {
+            $this->formGroup->label()->addClass('control-label-required');
+        }
+
+        call_user_func_array([$this->target, 'required'], [$conditional]);
+        return $this;
+    }
 
     public function inline()
     {
