@@ -16,6 +16,11 @@ class BasicFormBuilder
         $this->builder = $builder;
     }
 
+    public function getBuilder()
+    {
+        return $this->builder;
+    }
+
     protected function formGroup($label, $name, $control)
     {
         $label = $this->builder->label($label)->addClass('control-label')->forId($name);
