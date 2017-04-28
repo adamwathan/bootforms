@@ -120,9 +120,9 @@ class BasicFormBuilder
         return $this->wrap($checkGroup->addClass('radio'));
     }
 
-    public function textarea($label, $name)
+    public function textarea($label, $name, $value = null)
     {
-        $control = $this->builder->textarea($name);
+        $control = $this->builder->textarea($name)->value($value);
 
         return $this->formGroup($label, $name, $control);
     }
