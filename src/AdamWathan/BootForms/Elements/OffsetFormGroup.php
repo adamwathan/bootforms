@@ -1,6 +1,8 @@
 <?php namespace AdamWathan\BootForms\Elements;
 
-class OffsetFormGroup
+use Illuminate\Contracts\Support\Htmlable;
+
+class OffsetFormGroup implements Htmlable
 {
     protected $control;
     protected $columnSizes;
@@ -47,5 +49,14 @@ class OffsetFormGroup
     {
         call_user_func_array([$this->control, $method], $parameters);
         return $this;
+    }
+
+    /**
+     * Get content as a string of HTML.
+     *
+     * @return string
+     */
+    public function toHtml() {
+        return $this->render();
     }
 }
