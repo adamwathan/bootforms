@@ -33,7 +33,7 @@ Modify the `providers` array in `config/app.php` to include the `BootFormsServic
 ```php
 'providers' => [
     //...
-    'AdamWathan\BootForms\BootFormsServiceProvider'
+    AdamWathan\BootForms\BootFormsServiceProvider::class
   ],
 ```
 
@@ -42,7 +42,7 @@ Add the `BootForm` facade to the `aliases` array in `config/app.php`:
 ```php
 'aliases' => [
     //...
-    'BootForm' => 'AdamWathan\BootForms\Facades\BootForm'
+    'BootForm' => AdamWathan\BootForms\Facades\BootForm::class
   ],
 ```
 
