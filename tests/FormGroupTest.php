@@ -81,4 +81,15 @@ class FormGroupTest extends PHPUnit_Framework_TestCase
         $result = $formGroup->render();
         $this->assertEquals($expected, $result);
     }
+
+    public function testCanIncludeHtmlInLabels()
+    {
+        $label = $this->builder->label('<span>Email</span>');
+        $text = $this->builder->text('email');
+        $formGroup = new FormGroup($label, $text);
+
+        $expected = '<div class="form-group"><label><span>Email</span></label><input type="text" name="email"></div>';
+        $result = $formGroup->render();
+        $this->assertEquals($expected, $result);
+    }
 }
