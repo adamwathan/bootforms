@@ -1,4 +1,4 @@
-> This package is not actively maintained. If you use it on any of your projects and are interested in taking over the package, shoot me an email at adam at adamwathan dot me.
+> **Important: This package is not actively maintained.** If you use it on any of your projects and are interested in taking over the package, shoot me an email at adam at adamwathan dot me.
 
 BootForms
 ===============
