@@ -5,8 +5,9 @@ use AdamWathan\Form\Elements\Text;
 class InputGroup extends Text
 {
     protected $beforeAddon = [];
-
     protected $afterAddon = [];
+    protected $classAddon = [];
+    protected $addonID;
 
     public function beforeAddon($addon)
     {
@@ -22,6 +23,20 @@ class InputGroup extends Text
         return $this;
     }
 
+    public function addAddonClass($class)
+    {
+        $this->classAddon[] = $class;
+
+        return $this;
+    }
+
+    public function addAddonId($id)
+    {
+        $this->addonID = $id;
+
+        return $this;
+    }
+
     public function type($type)
     {
         $this->attributes['type'] = $type;
@@ -33,9 +48,25 @@ class InputGroup extends Text
         $html = '';
 
         foreach ($addons as $addon) {
-            $html .= '<span class="input-group-addon">';
-            $html .= $addon;
-            $html .= '</span>';
+            $html .= sprintf('<span %sclass="input-group-addon%s">%s</span>', $this->renderAddonsId(), $this->renderAddonsClass(), $addon);
+        }
+
+        return $html;
+    }
+
+    protected function renderAddonsId()
+    {
+        if($this->addonID) {
+            return sprintf('id="%s"' . ' ', $this->addonID);
+        }
+    }
+
+    protected function renderAddonsClass()
+    {
+        $html = '';
+
+        foreach($this->classAddon as $class) {
+            $html .= ' ' . $class;
         }
 
         return $html;
