@@ -3,6 +3,7 @@
 BootForms
 ===============
 
+[![This Project Has Been Deprecated.](http://www.repostatus.org/badges/0.1.0/abandoned.svg)](http://www.repostatus.org/#abandoned)
 [![Code Climate](https://codeclimate.com/github/adamwathan/bootforms/badges/gpa.svg)](https://codeclimate.com/github/adamwathan/bootforms)
 [![Coverage Status](https://coveralls.io/repos/adamwathan/bootforms/badge.svg?branch=master)](https://coveralls.io/r/adamwathan/bootforms?branch=master)
 
