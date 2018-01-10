@@ -2,12 +2,26 @@
 
 use AdamWathan\Form\Elements\Text;
 
+/**
+ * Class InputGroup
+ * @package AdamWathan\BootForms\Elements
+ */
 class InputGroup extends Text
 {
+    /**
+     * @var array
+     */
     protected $beforeAddon = [];
 
+    /**
+     * @var array
+     */
     protected $afterAddon = [];
 
+    /**
+     * @param $addon
+     * @return $this
+     */
     public function beforeAddon($addon)
     {
         $this->beforeAddon[] = $addon;
@@ -15,6 +29,10 @@ class InputGroup extends Text
         return $this;
     }
 
+    /**
+     * @param $addon
+     * @return $this
+     */
     public function afterAddon($addon)
     {
         $this->afterAddon[] = $addon;
@@ -22,12 +40,20 @@ class InputGroup extends Text
         return $this;
     }
 
+    /**
+     * @param $type
+     * @return $this
+     */
     public function type($type)
     {
         $this->attributes['type'] = $type;
         return $this;
     }
 
+    /**
+     * @param array $addons
+     * @return string
+     */
     protected function renderAddons($addons)
     {
         $html = '';
@@ -41,6 +67,9 @@ class InputGroup extends Text
         return $html;
     }
 
+    /**
+     * @return string
+     */
     public function render()
     {
         $html = '<div class="input-group">';
